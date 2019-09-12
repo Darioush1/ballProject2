@@ -99,11 +99,11 @@ transition: 0.3s;
   max-width: 300px;
 }
 
-/* .playerPic{
+.playerPic{
   display: block;
   width: 100%;
   height:auto;
-} */
+}
 
 .imageInfo {
   position: absolute;
