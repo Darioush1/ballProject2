@@ -1,80 +1,67 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+
+
 <div id="home">
 
+  {{!-- SideBar that exists outside of the container --}}
   <div id='mySideBar' class='dSideBar'>
     <a href='javascript:void(0)' class='closeBar' onclick="openBar()">&times;</a>
-    <a href="#">test1</a>
-    <a href="#">test2</a>
-    <a href="#">test3</a>
-    <a href="#">test4</a>
+    <a href="#">Player</a>
+    <a href="#">Teams</a>
+    <a href="#">Figure it out?</a>
+    <a href="#">Fun Stuff</a>
   </div>
+  {{!-- end SideBar that exist outside of Boot strap Container --}}
 
-  
+
+  {{!-- main part of the page --}}
   <div class="container">
-    
-      <button class='sideButtonD'>open</button>
+    {{!-- Header --}}
+    <button class='sideButtonD'>open</button>
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>The GOAT</h2>
+
+        {{!-- subtitle --}}
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="example-text">Who's the Goat?</label>
+            {{!-- end subtitle --}}
 
+
+            {{!-- end header --}}
+            ​
             {{!-- Search Bar --}}
-            <select class="form-control input-lg m-bot15">
-              <option>Find Player</option>
-            </select>
+            <form id='submitBar'>
+              <div class="form-group">
+                <input type="search" class="form-control" id="playerSelected" placeholder="Pick A Player">
+              </div>
+              <button type="button" class="btn btn-primary" id='searchButton'>Submit</button>
+            </form>
             {{!-- Search Bar --}}
           </div>
-
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
 
-{{!-- What goes inside the table --}}
+        {{!-- tab section to help players make informed descisions --}}
         <div class='playerDataD'>
-          <button class='dataPage' onclick="openPage (event, 'data')">Player</button>
-          <button class='dataPage' onclick="openPage (event, 'graph')">Graph</button>
-          <button class='dataPage' onclick="openPage (event, 'news')">News</button>
-          <button class='dataPage' onclick="openPage (event, 'rank')">Rank</button>
-          <button class='dataPage' onclick="openPage (event, 'team')">Team</button>
+          <button class='dataPage'>Player</button>
+          <button class='dataPage'>Graph</button>
+          <button class='dataPage'>News</button>
+          <button class='dataPage'>Rank</button>
+          <button class='dataPage'>Team</button>
         </div>
+        {{!-- end tab table to help players make informed descisions --}}
 
-{{!-- playerCard example --}}
-        <div class="playerCard">
-          <img src="./sampleImages/lebron_james_nba_171122_cle-vs-bkn-05.jpg" alt="Avatar" class="playerPic">
-          <div class="imageInfo">My Name is John</div>
-        </div>
-{{!-- playerCard end --}}
+        {{!-- What goes inside tab/info portion --}}
+        <div id='Player' class='dataPageContent'>
 
-        <div class="col-md-3">
-
-          <div class="social-box twitter">
-
-            <i class="fa fa-twitter" id='playerCard'></i>
-            <ul>
-              <li>
-                <strong id="salary">$0</strong>
-                <span>salary</span>
-              </li>
-              <li>
-                <strong id='position'>C</strong>
-                <span>Position</span>
-              </li>
-              <li>
-                <strong id='team'>Pacers</strong>
-                <span>Team</span>
-              </li>
-
-            </ul>
-          </div>
-        </div>
-
-
-{{!-- Start Table --}}
- <div class="col-sm-12 col-lg-12 col-md-12">
+          {{!-- Start Player Data Table in tab Player --}}
+          <div class="col-sm-12 col-lg-12 col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h2><i class="fa fa-flag-o red"></i><strong>Registered Users</strong></h2>
+
                 <div class="panel-actions">
                   <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
                   <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -120,9 +107,110 @@
                       <td>1025</td>
                       <td>
                         <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 73%">
                           </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%">
+                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 27%">
+                          </div>
+                        </div>
+                        <span class="sr-only">73%</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          {{!-- end Player Data Table in tab Player --}}
+        </div>
+        <div id='Graph' class='dataPageContent'>
+          <div class="container">
+              <div class="row my-3">
+                <div class="col">
+                  <h4>Bootstrap 4 Chart.js - Bar Chart</h4>
+                </div>
+              </div>
+              <div class="row my-2">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <canvas id="chBar" height="100"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        {{!-- I need to connect the previous API set up to include news articles --}}
+        <div id='News' class='dataPageContent'>
+          <h3>News</h3>
+          <p>Here we put data</p>
+        </div>
+
+        {{!-- compare to other players already chosen? --}}
+        <div id='Rank' class='dataPageContent'>
+          <h3>Rank</h3>
+          <p>Here we put data</p>
+        </div>
+
+        <div id='Team' class='dataPageContent'>
+          {{!-- here is the table for the entire teams data --}}
+          <div class="col-sm-12 col-lg-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+
+                <div class="panel-actions">
+                  <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                  <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                </div>
+              </div>
+              <div class="panel-body table-responsive">
+                <table class="table countries">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Player</th>
+                      <th>Year</th>
+                      <th>Season</th>
+                      <th>Team</th>
+                      <th>GP</th>
+                      <th>Min</th>
+                      <th>PPG</th>
+                      <th>Oreb</th>
+                      <th>Dreb</th>
+                      <th>Reb</th>
+                      <th>Ast</th>
+                      <th>Stl</th>
+                      <th>Blk</th>
+                      <th>TO</th>
+                      <th>PF</th>
+                      <th>FGM</th>
+                      <th>FGA</th>
+                      <th>FG%</th>
+                      <th>3PTM</th>
+                      <th>3PTA</th>
+                      <th>3PT%</th>
+                      <th>FTM</th>
+                      <th>FTA</th>
+                      <th>FT%</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
+                      <td>Germany</td>
+                      <td>2563</td>
+                      <td>1025</td>
+                      <td>
+                        <div class="progress thin">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 73%">
+                          </div>
+                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 27%">
                           </div>
                         </div>
                         <span class="sr-only">73%</span>
@@ -135,9 +223,11 @@
                       <td>2563</td>
                       <td>
                         <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="57"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 57%">
                           </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%">
+                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="43"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 43%">
                           </div>
                         </div>
                         <span class="sr-only">57%</span>
@@ -150,9 +240,11 @@
                       <td>452</td>
                       <td>
                         <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width: 93%">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="93"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 93%">
                           </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100" style="width: 7%">
+                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="7"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 7%">
                           </div>
                         </div>
                         <span class="sr-only">93%</span>
@@ -165,9 +257,11 @@
                       <td>958</td>
                       <td>
                         <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                           </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                           </div>
                         </div>
                         <span class="sr-only">20%</span>
@@ -180,9 +274,11 @@
                       <td>3621</td>
                       <td>
                         <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                           </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                           </div>
                         </div>
                         <span class="sr-only">20%</span>
@@ -195,9 +291,11 @@
                       <td>102</td>
                       <td>
                         <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                           </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                           </div>
                         </div>
                         <span class="sr-only">20%</span>
@@ -210,9 +308,11 @@
                       <td>102</td>
                       <td>
                         <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                           </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                           </div>
                         </div>
                         <span class="sr-only">20%</span>
@@ -225,9 +325,11 @@
                       <td>102</td>
                       <td>
                         <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
                           </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                           </div>
                         </div>
                         <span class="sr-only">20%</span>
@@ -238,41 +340,21 @@
               </div>
             </div>
           </div>
-      {{!-- end table --}}
+          {{!-- end the table for the entire teams data --}}
+        </div>
+        {{!-- End what goes inside the table --}}
 
 
+        {{!-- playerCard example --}}
+        <div class="playerCard">
+          <img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">
+          <div class="imageInfo">Lebron James
+           <hr>
+           <span  class='playerInfo' id='cost'>$0</span> <span class='playerInfo' id='position'>PF</span>
+          </div>
+        </div>
+        {{!-- playerCard end --}}
 
-
-        <div id='data' class='dataPageContent'>
-          <h3>PLayer</h3>
-          <p>Here we put data</p>
-        </div>
-        <div id='graph' class='dataPageContent'>
-          <h3>Graph</h3>
-          <p>Take a wild guess</p>
-        </div>
-        <div id='news' class='dataPageContent'>
-          <h3>News</h3>
-          <p>Here we put data</p>
-        </div>
-        <div id='rank' class='dataPageContent'>
-          <h3>Rank</h3>
-          <p>Here we put data</p>
-        </div>
-        <div id='team' class='dataPageContent'>
-          <h3>Team</h3>
-          <p>Here we put data</p>
-        </div>
-
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
       </div>
     </div>
 
@@ -280,42 +362,107 @@
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<script>function openBar() {
+
+{{!-- darioush figure out in class how to put the script in actual js file!!! this set up is confusing --}}
+
+
+
+<script>
+  var tabTextClass = '';
+
+  $(document).ready(function () {
+    //$('.sideButtonD, .dataPageContent, .playerDataD').hide();
+
+  });
+
+  //Start Side Bar functions
+  function openBar() {
     $(".dSideBar").width('250px');
     $(".container").css({ 'margin-left': '250px' });
     console.log('open nav')
   }
 
   function closeBar() {
-    $(".dSideBar").width("0px");
-    $(".container").css({ 'margin-left': '0px' });
+    $('.dSideBar').width('0px');
+    $('.container').css({ 'margin-left': '0px' });
   }
 
   $('.sideButtonD').on('click', function () {
     openBar();
-  })
+  });
 
   $('.closeBar').on('click', function () {
     closeBar();
+  });
+  //End Side Bar Functions
+
+
+
+  //function that switches between tabs
+  $('.dataPage').on('click', function () {
+    $(tabTextClass).hide();
+    var tabText = jQuery(this).text();
+    tabTextClass = "#" + tabText;
+    $(tabTextClass).show(function () {
+      $('.dataPageContent').slidedown('slow')
+    });
+
+  });
+
+
+  var colors = ['#007bff', '#28a745', '#444444', '#c3e6cb', '#dc3545', '#6c757d'];
+  var chBar = $("chBar");
+  var chartData = {
+    labels: ["Player", "Year", "Season", "Team", "GP", "Min", "PPG",
+      "Orb", "Dreb", "Reb", "Ast", "Stl", "Blk", "TO", "PF", "FGM", "FGA",
+      "3PTM", "3PTA", "FTM", "FTA"],
+    datasets: [{
+      data: ["Aaron Gordon", "2018-2019", "REG", "Magic",
+        78, 33.75, 15.97, 1.65, 5.71, 7.36, 3.71, 0.73, 0.72, 2.08, 2.21,
+        6.03, 13.41, 1.55, 4.45, 2.37, 3.24],
+      backgroundColor: colors[0]
+    }]
+  };
+
+  if (chBar) {
+    new Chart(chBar, {
+      type: "bar",
+      data: chartData,
+      options: {
+        scales: {
+          xAxes: [{
+            barPercentage: 0.4,
+            categoryPercentage: 0.5
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: false
+            }
+          }]
+        },
+        legend: {
+          display: false
+        }
+      }
+    });
+  };
+
+
+  $('#searchButton').on('click', function () {
+    var playerText = $('#playerSelected').html();
+    console.log(playerText + ' search term');
+
   })
 
-  function changeTab(event, contentD) {
-    var i, dataPageContent, dataPage;
 
-    dataPageContent = $('.dataPageContent');
 
-    for (var i = 0; i < dataPageContent.length; i++) {
-      dataPageContent[i].hide();
-    };
+  $("#find-player").on("click", function(event) {
+    $.ajax({
+        url: "https://nba-players.herokuapp.com/players-stats",
+        method: "GET"
+    }).done(function(response) {
+      console.log(response)
+    });
+  });
 
-    dataPage = $('.dataPage');
-    for (var i = 0; i < dataPage.length; i++) {
-      dataPage[i].toggleClass(' active', '')
-    }
-
-    $('contentD').show("block");
-    evt.currentTarget.className += " active";
-  }
 </script>
