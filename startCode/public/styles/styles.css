@@ -96,7 +96,7 @@ transition: 0.3s;
 .playerCard {
   position: relative;
   width: 50%;
-  max-width: 300px;
+  max-width: 300px
 }
 
 .playerPic{
@@ -107,10 +107,15 @@ transition: 0.3s;
 
 .imageInfo {
   position: absolute;
+  background-color: #818181;
   bottom: 0;
   width: 100%;
   color: white;
   font-size: 20px;
-  padding:20px;
+  padding:10px;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto
 }
+
+
