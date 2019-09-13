@@ -1,10 +1,33 @@
 var db = require("../models");
 
+
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+
+  app.get("/api/players", function(req, res) {
+    db.Nbastat.findAll({ 
+    }).then(function(dbNbastat) {
+      console.log(db.Nbastat)
+      res.json(dbNbastat);
+    });
+  });
+
+  app.get("/api/players/:id", function(req, res) {
+    db.Nbastat.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbNbastat) {
+      res.json(dbNbastat);
+    });
+  });
+
+  app.get("/api/players/players", function(req, res) {
+    db.Nbastat.findOne({
+      where: {players: ''},
+      attributes: ['players', ['players']]
+    }).then(function(dbNbastat) {
+      res.json(dbNbastat);
     });
   });
 
