@@ -73,8 +73,8 @@
                   <thead>
                     <tr>
                       <th></th>
-                      <th>Player</th>
-                      <th>Year</th>
+                      <th id = 'stat'>Player</th>
+                      <th id >Year</th>
                       <th>Season</th>
                       <th>Team</th>
                       <th>GP</th>
@@ -171,7 +171,6 @@
                 <table class="table countries">
                   <thead>
                     <tr>
-                      <th></th>
                       <th>Player</th>
                       <th>Year</th>
                       <th>Season</th>
@@ -200,21 +199,11 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
+                     
                       <td>Germany</td>
                       <td>2563</td>
                       <td>1025</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                          </div>
-                        </div>
-                        <span class="sr-only">73%</span>
-                      </td>
+                      <td></td>
                     </tr>
                     <tr>
                       <td><img src="img/India.png" style="height:18px; margin-top:-2px;"></td>
@@ -447,33 +436,33 @@
     });
   };
 
+function populateTable() {
+  $(th).html()
+}
+
 
   $('#searchButton').on('click', function () {
     var playerText = $('#playerSelected').val();
+    var chosenPlayer = '';
     $.ajax({
         url: "./api/players",
         method: "GET"
     }).done(function(response) {
+      console.log(response[0])
       for (var i = 0; i <response.length; i++) {
         if (playerText == response[i].players) {
-          console.log(response[i].players + 'if works')
+          chosenPlayer = response[i].id;
+          console.log(chosenPlayer + ' id')
         } else {
-          
+
         }
+
+
       }
     });
 
   })
 
 
-
-  $("#find-player").on("click", function() {
-    $.ajax({
-        url: "/api/players",
-        method: "GET"
-    }).done(function(response) {
-      console.log(response)
-    });
-  });
 
 </script>
