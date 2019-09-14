@@ -449,16 +449,27 @@
 
 
   $('#searchButton').on('click', function () {
-    var playerText = $('#playerSelected').html();
-    console.log(playerText + ' search term');
+    var playerText = $('#playerSelected').val();
+    $.ajax({
+        url: "./api/players",
+        method: "GET"
+    }).done(function(response) {
+      for (var i = 0; i <response.length; i++) {
+        if (playerText == response[i].players) {
+          console.log(response[i].players + 'if works')
+        } else {
+          
+        }
+      }
+    });
 
   })
 
 
 
-  $("#find-player").on("click", function(event) {
+  $("#find-player").on("click", function() {
     $.ajax({
-        url: "https://nba-players.herokuapp.com/players-stats",
+        url: "/api/players",
         method: "GET"
     }).done(function(response) {
       console.log(response)

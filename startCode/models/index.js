@@ -8,6 +8,7 @@ var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
 
+
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
@@ -28,6 +29,9 @@ fs.readdirSync(__dirname)
   .forEach(function(file) {
     var model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
+    sequelize.query('select * from nbastats').then(function(rows) {
+  console.log(JSON.stringify(rows));
+});
   });
 
 Object.keys(db).forEach(function(modelName) {
@@ -40,4 +44,3 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
-
