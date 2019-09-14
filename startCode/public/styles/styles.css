@@ -17,6 +17,14 @@
 
 }
 
+.header1 {
+  background-color: #818181;
+}
+
+.headerRow{
+  background-clip: #818181;
+}
+
 .dSideBar {
   height: 100%;
   width : 0;
