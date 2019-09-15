@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   
 
-	var Nbastat = sequelize.define('Nbastat', {
+	var TeamA = sequelize.define('TeamA', {
 		id: {
 			type: DataTypes.INTEGER(11),
 			allowNull: false,
@@ -130,7 +130,16 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	}, {
 		timestamps: false
-	});
+});
 
-	return Nbastat;
+// TeamA.associate = function(models) {
+
+//     TeamA.belongsTo(models.players, {
+// 		foreignKey: {
+// 			allowNull: false
+// 		}
+// 	})
+// }
+
+return TeamA;
 };

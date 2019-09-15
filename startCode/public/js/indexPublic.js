@@ -3,6 +3,45 @@ var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+var name = '';
+var team = '';
+var gp = 0;
+var min = 0;
+var ppg = 0;
+var oreb = 0;
+var dreb = 0;
+var reb = 0;
+var ast = 0;
+var stl = 0;
+var blk = 0;
+var to = 0;
+var pf = 0;
+var fgm = 0;
+var fga = 0;
+var fgp =0;
+var ptm = 0;
+var pta = 0;
+var ptp = 0;
+var ftm = 0;
+
+
+                    // <th id = 'oreb'>Oreb</th>
+                    // <th id = 'dreb'>Dreb</th>
+                    // <th id = 'reb'>Reb</th>
+                    // <th id = 'ast'>Ast</th>
+                    // <th id = 'stl'>Stl</th>
+                    // <th id = 'blk'>Blk</th>
+                    // <th id = 'to'>TO</th>
+                    // <th id = 'pf'>PF</th>
+                    // <th id = 'fgm'>FGM</th>
+                    // <th id = 'fga'>FGA</th>
+                    // <th id = 'fgp'>FG%</th>
+                    // <th id = '3ptm'>3PTM</th>
+                    // <th id = '3pta'>3PTA</th>
+                    // <th id = '3ptp'>3PT%</th>
+                    // <th id = 'ftm'>FTM</th>
+                    // <th id = 'fta'>FTA</th>
+                    // <th id = 'ftp'>FT%</th>
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -143,13 +182,10 @@ $('.dataPage').on('click', function () {
 var colors = ['#007bff', '#28a745', '#444444', '#c3e6cb', '#dc3545', '#6c757d'];
 var chBar = $("chBar");
 var chartData = {
-  labels: ["Player", "Year", "Season", "Team", "GP", "Min", "PPG",
-    "Orb", "Dreb", "Reb", "Ast", "Stl", "Blk", "TO", "PF", "FGM", "FGA",
-    "3PTM", "3PTA", "FTM", "FTA"],
+  labels: ["Player", "Team", "GP", "Min", "PPG",
+    "Orb", "Dreb", "Reb", "Ast", "Stl", "Blk", "TO", "PF", "FGM", "FGA", "3PTM", "3PTA", "FTM", "FTA"],
   datasets: [{
-    data: ["Aaron Gordon", "2018-2019", "REG", "Magic",
-      78, 33.75, 15.97, 1.65, 5.71, 7.36, 3.71, 0.73, 0.72, 2.08, 2.21,
-      6.03, 13.41, 1.55, 4.45, 2.37, 3.24],
+    data: [name, team, gp, min, ppg, oreb, dreb, reb, ast, stl, blk, to, pf, fgm, fgp, ptm, pta, ptp, ftm],
     backgroundColor: colors[0]
   }]
 };
@@ -182,29 +218,6 @@ $('#searchButton').on('click', function () {
   var playerText = $('#playerSelected').val();
   var chosenPlayer = '';
 
-  var name = '';
-  var team = '';
-  var gp = 0;
-  var min = 0;
-  var ppg = 0;
-  var oreb = 0;
-  var dreb = 0;
-  var reb = 0;
-  var ast = 0;
-  var stl = 0;
-  var blk = 0;
-  var to = 0;
-  var pf = 0;
-  var fgm = 0;
-  var fga = 0;
-  var fgp =0;
-  var ptm = 0;
-  var pta = 0;
-  var ptp = 0;
-  var ftm = 0;
-
-
-
 
   $('.sideButtonD, .dataPageContent, .playerDataD, #afterSearch').show();
   $('.header1').hide();
@@ -217,6 +230,11 @@ $('#searchButton').on('click', function () {
       if (playerText == response[i].players) {
         chosenPlayer = response[i].id;
         console.log(chosenPlayer + ' id');
+        $('#name').text(response[i].players);
+        $('#team').text(response[i].team);
+        $('#gp').val(gp);  
+        $('#min').val();
+        $('#ppg').val();
         addPlayerCard();
 
       } else {
