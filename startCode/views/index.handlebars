@@ -58,11 +58,11 @@
 
       {{!-- tab section to help players make informed descisions --}}
       <div class='playerDataD'>
-        <button class='dataPage'>Player</button>
-        <button class='dataPage'>Graph</button>
-        <button class='dataPage'>News</button>
-        <button class='dataPage'>Rank</button>
-        <button class='dataPage'>Team</button>
+          <button class='dataPage'>Player</button>
+          <button class='dataPage'>Graph</button>
+          <button class='dataPage'>News</button>
+          <button class='dataPage'>Rank</button>
+          <button class='dataPage'>Team</button>
       </div>
       {{!-- end tab table to help players make informed descisions --}}
 
@@ -125,6 +125,7 @@
         </div>
         {{!-- end Player Data Table in tab Player --}}
       </div>
+
       <div id='Graph' class='dataPageContent'>
         <div class="container">
           <div class="row my-3">
@@ -198,13 +199,6 @@
                 </thead>
                 <tbody>
                   <tr>
-
-                    <td>Germany</td>
-                    <td>2563</td>
-                    <td>1025</td>
-                    <td></td>
-                  </tr>
-                  <tr>
                     <td id='name'></th>
                     <td id = 'team'></th>
                     <td id = 'gp'></th>
@@ -227,17 +221,7 @@
                     <td id = 'ftm'>FTM</th>
                     <td id = 'fta'>FTA</th>
                     <td id = 'ftp'>FT%</th>
-                    <td>
-                      <div class="progress thin">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="57"
-                          aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-                        </div>
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="43"
-                          aria-valuemin="0" aria-valuemax="100" style="width: 43%">
-                        </div>
-                      </div>
-                      <span class="sr-only">57%</span>
-                    </td>
+                    <td></td>
                   </tr>
                   
                 </tbody>
@@ -250,6 +234,11 @@
       {{!-- End what goes inside the table --}}
 
     </div>
+  </div>
+
+  <div class='teamASide'>
+    Team A
+    <div class='playerInfo'></div>
   </div>
 
 

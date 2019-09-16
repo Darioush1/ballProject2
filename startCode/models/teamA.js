@@ -132,14 +132,6 @@ module.exports = function(sequelize, DataTypes) {
 		timestamps: false
 });
 
-// TeamA.associate = function(models) {
-
-//     TeamA.belongsTo(models.players, {
-// 		foreignKey: {
-// 			allowNull: false
-// 		}
-// 	})
-// }
 
 return TeamA;
 };
