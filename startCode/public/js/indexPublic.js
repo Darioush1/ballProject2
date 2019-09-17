@@ -231,6 +231,8 @@ $('#searchButton').on('click', function () {
     console.log(response[0])
     for (var i = 0; i < response.length; i++) {
       if (playerText == response[i].players) {
+        var playerName = response[i].players;
+        var realTeam = response[i].Team;
         chosenPlayer = response[i].id;
         console.log(chosenPlayer + ' id');
         $('#name').text(response[i].players);
@@ -238,7 +240,7 @@ $('#searchButton').on('click', function () {
         $('#gp').val(gp);  
         $('#min').val();
         $('#ppg').val();
-        addPlayerCard();
+        //addPlayerCard();
         getPlayers();
 
       } else {
@@ -253,17 +255,19 @@ $('#searchButton').on('click', function () {
 
 var newPlayerCard = '<div class="playerCard">' +
   '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-  '<div class="imageInfo">' + 'jake' +
+  '<div class="imageInfo">' + playerName +
   '<hr>' +
-  '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="position">' + 'PF' + '</span>'
+  '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + realTeam + '</span>'
   + '</div>' +
   '</div>'
   ;;
 
-function addPlayerCard() {
-  console.log('player card button')
-  $('.playerInfo').append(newPlayerCard)
-};
+
+
+//function addPlayerCard() {
+ // console.log('player card button')
+ // $('.playerInfo').append(newPlayerCard)
+//};
 
 function getPlayers() {
   $.get("/api/PLayers", function(data) {
@@ -278,16 +282,24 @@ function getPlayers() {
 
 function populateTable(event) {
   event.preventdDefault();
+  console.log('this is event ' + event)
   if (!playerText.val().trim().trim()) {
     return;
   }
-  enterPlayerChoiceA
+  enterPlayerChoiceA({})
+};
+
+function userChoice (playerData) {
+  console.log("This is player Data " + playerData)
+  $.post('/api/players', playerData)
+    .then(getPlayers)
 }
 
 function enterPlayerChoiceA(playerData) {
   $.post("/api/players", playerData)
     .then(getPlayers);
 }
+
 
 
 
