@@ -1,7 +1,3 @@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-
-
 <div id="home">
 
   {{!-- SideBar that exists outside of the container --}}
@@ -16,453 +12,243 @@
 
 
   {{!-- main part of the page --}}
-  <div class="container">
-    {{!-- Header --}}
+   <div class="container">
+    {{!-- this is the opening screen header --}}
+    <div class='header1'>
+      <div class="row" id="headerRow">
+        <div class="col-8 offset-2">
+          <h1>{{msg}}</h1>
+          <h2>The GOAT</h2>
+          ​
+          {{!-- Search Bar --}}
+          <form id='submitBar'>
+            <div class="form-group">
+              <input type="search" class="form-control" id="playerSelected" placeholder="Pick A Player">
+            </div>
+            <button type="button" class="btn btn-primary" id='searchButton'>Submit</button>
+          </form>
+          {{!-- Search Bar --}}
+        </div>
+        </form>
+
+      </div>
+    </div>
+    {{!-- the opening screen header ends here --}}
+
+{{!-- Here is what is presented after the intial search --}}
     <button class='sideButtonD'>open</button>
-    <div class="row">
+
+    <div class="row" id='afterSearch'>
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>The GOAT</h2>
 
-        {{!-- subtitle --}}
-        <form class="clearfix mb-4" action="POST">
+        {{!-- end header --}}
+        ​
+        {{!-- Search Bar --}}
+        <form id='submitBar'>
           <div class="form-group">
-            <label for="example-text">Who's the Goat?</label>
-            {{!-- end subtitle --}}
-
-
-            {{!-- end header --}}
-            ​
-            {{!-- Search Bar --}}
-            <form id='submitBar'>
-              <div class="form-group">
-                <input type="search" class="form-control" id="playerSelected" placeholder="Pick A Player">
-              </div>
-              <button type="button" class="btn btn-primary" id='searchButton'>Submit</button>
-            </form>
-            {{!-- Search Bar --}}
+            <input type="search" class="form-control" id="playerSelected" placeholder="Pick A Player">
           </div>
+          <button type="button" class="btn btn-primary" id='searchButton'>Submit</button>
         </form>
+        {{!-- Search Bar --}}
+      </div>
+      </form>
 
-        {{!-- tab section to help players make informed descisions --}}
-        <div class='playerDataD'>
+      {{!-- tab section to help players make informed descisions --}}
+      <div class='playerDataD'>
           <button class='dataPage'>Player</button>
           <button class='dataPage'>Graph</button>
           <button class='dataPage'>News</button>
           <button class='dataPage'>Rank</button>
           <button class='dataPage'>Team</button>
-        </div>
-        {{!-- end tab table to help players make informed descisions --}}
-
-        {{!-- What goes inside tab/info portion --}}
-        <div id='Player' class='dataPageContent'>
-
-          {{!-- Start Player Data Table in tab Player --}}
-          <div class="col-sm-12 col-lg-12 col-md-12">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-
-                <div class="panel-actions">
-                  <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                  <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
-                </div>
-              </div>
-              <div class="panel-body table-responsive">
-                <table class="table countries">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Player</th>
-                      <th>Year</th>
-                      <th>Season</th>
-                      <th>Team</th>
-                      <th>GP</th>
-                      <th>Min</th>
-                      <th>PPG</th>
-                      <th>Oreb</th>
-                      <th>Dreb</th>
-                      <th>Reb</th>
-                      <th>Ast</th>
-                      <th>Stl</th>
-                      <th>Blk</th>
-                      <th>TO</th>
-                      <th>PF</th>
-                      <th>FGM</th>
-                      <th>FGA</th>
-                      <th>FG%</th>
-                      <th>3PTM</th>
-                      <th>3PTA</th>
-                      <th>3PT%</th>
-                      <th>FTM</th>
-                      <th>FTA</th>
-                      <th>FT%</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Germany</td>
-                      <td>2563</td>
-                      <td>1025</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                          </div>
-                        </div>
-                        <span class="sr-only">73%</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          {{!-- end Player Data Table in tab Player --}}
-        </div>
-        <div id='Graph' class='dataPageContent'>
-          <div class="container">
-              <div class="row my-3">
-                <div class="col">
-                  <h4>Bootstrap 4 Chart.js - Bar Chart</h4>
-                </div>
-              </div>
-              <div class="row my-2">
-                <div class="col-md-12">
-                  <div class="card">
-                    <div class="card-body">
-                      <canvas id="chBar" height="100"></canvas>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-
-        {{!-- I need to connect the previous API set up to include news articles --}}
-        <div id='News' class='dataPageContent'>
-          <h3>News</h3>
-          <p>Here we put data</p>
-        </div>
-
-        {{!-- compare to other players already chosen? --}}
-        <div id='Rank' class='dataPageContent'>
-          <h3>Rank</h3>
-          <p>Here we put data</p>
-        </div>
-
-        <div id='Team' class='dataPageContent'>
-          {{!-- here is the table for the entire teams data --}}
-          <div class="col-sm-12 col-lg-12 col-md-12">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-
-                <div class="panel-actions">
-                  <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                  <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
-                </div>
-              </div>
-              <div class="panel-body table-responsive">
-                <table class="table countries">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Player</th>
-                      <th>Year</th>
-                      <th>Season</th>
-                      <th>Team</th>
-                      <th>GP</th>
-                      <th>Min</th>
-                      <th>PPG</th>
-                      <th>Oreb</th>
-                      <th>Dreb</th>
-                      <th>Reb</th>
-                      <th>Ast</th>
-                      <th>Stl</th>
-                      <th>Blk</th>
-                      <th>TO</th>
-                      <th>PF</th>
-                      <th>FGM</th>
-                      <th>FGA</th>
-                      <th>FG%</th>
-                      <th>3PTM</th>
-                      <th>3PTA</th>
-                      <th>3PT%</th>
-                      <th>FTM</th>
-                      <th>FTA</th>
-                      <th>FT%</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Germany</td>
-                      <td>2563</td>
-                      <td>1025</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 73%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 27%">
-                          </div>
-                        </div>
-                        <span class="sr-only">73%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><img src="img/India.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>India</td>
-                      <td>3652</td>
-                      <td>2563</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="57"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 57%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="43"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 43%">
-                          </div>
-                        </div>
-                        <span class="sr-only">57%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><img src="img/Spain.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Spain</td>
-                      <td>562</td>
-                      <td>452</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="93"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 93%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="7"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 7%">
-                          </div>
-                        </div>
-                        <span class="sr-only">93%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><img src="img/India.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Russia</td>
-                      <td>1258</td>
-                      <td>958</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                          </div>
-                        </div>
-                        <span class="sr-only">20%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><img src="img/Spain.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>USA</td>
-                      <td>4856</td>
-                      <td>3621</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                          </div>
-                        </div>
-                        <span class="sr-only">20%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Brazil</td>
-                      <td>265</td>
-                      <td>102</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                          </div>
-                        </div>
-                        <span class="sr-only">20%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Coloumbia</td>
-                      <td>265</td>
-                      <td>102</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                          </div>
-                        </div>
-                        <span class="sr-only">20%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>France</td>
-                      <td>265</td>
-                      <td>102</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
-                            aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                          </div>
-                        </div>
-                        <span class="sr-only">20%</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          {{!-- end the table for the entire teams data --}}
-        </div>
-        {{!-- End what goes inside the table --}}
-
-
-        {{!-- playerCard example --}}
-        <div class="playerCard">
-          <img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">
-          <div class="imageInfo">Lebron James
-           <hr>
-           <span  class='playerInfo' id='cost'>$0</span> <span class='playerInfo' id='position'>PF</span>
-          </div>
-        </div>
-        {{!-- playerCard end --}}
-
       </div>
+      {{!-- end tab table to help players make informed descisions --}}
+
+
+      {{!-- What goes inside tab/info portion --}}
+      <div id='Player' class='dataPageContent'>
+
+        {{!-- Start Player Data Table in tab Player --}}
+        <div class="col-sm-12 col-lg-12 col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+
+              <div class="panel-actions">
+                <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+              </div>
+            </div>
+            <div class="panel-body table-responsive">
+              <table class="table countries">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Player</th>
+                    <th>Team</th>
+                    <th>GP</th>
+                    <th>Min</th>
+                    <th>PPG</th>
+                    <th>Oreb</th>
+                    <th>Dreb</th>
+                    <th>Reb</th>
+                    <th>Ast</th>
+                    <th>Stl</th>
+                    <th>Blk</th>
+                    <th>TO</th>
+                    <th>PF</th>
+                    <th>FGM</th>
+                    <th>FGA</th>
+                    <th>FG%</th>
+                    <th>3PTM</th>
+                    <th>3PTA</th>
+                    <th>3PT%</th>
+                    <th>FTM</th>
+                    <th>FTA</th>
+                    <th>FT%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
+                    <td>Germany</td>
+                    <td>2563</td>
+                    <td>1025</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        {{!-- end Player Data Table in tab Player --}}
+      </div>
+
+      <div id='Graph' class='dataPageContent'>
+        <div class="container">
+          <div class="row my-3">
+            <div class="col">
+              <h4>Bootstrap 4 Chart.js - Bar Chart</h4>
+            </div>
+          </div>
+          <div class="row my-2">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <canvas id="chBar" height="100"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{!-- I need to connect the previous API set up to include news articles --}}
+      <div id='News' class='dataPageContent'>
+        <h3>News</h3>
+        <p>Here we put data</p>
+      </div>
+
+      {{!-- compare to other players already chosen? --}}
+      <div id='Rank' class='dataPageContent'>
+        <h3>Rank</h3>
+        <p>Here we put data</p>
+      </div>
+
+      <div id='teamData' class='dataPageContent'>
+        {{!-- here is the table for the entire teams data --}}
+        <div class="col-sm-12 col-lg-12 col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+
+              <div class="panel-actions">
+                <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+              </div>
+            </div>
+            <div class="panel-body table-responsive">
+              <table class="table countries">
+                <thead>
+                  <tr>
+                    <th>Player</th>
+                    <th>Team</th>
+                    <th>GP</th>
+                    <th>Min</th>
+                    <th>PPG</th>
+                    <th>Oreb</th>
+                    <th>Dreb</th>
+                    <th>Reb</th>
+                    <th>Ast</th>
+                    <th>Stl</th>
+                    <th>Blk</th>
+                    <th>TO</th>
+                    <th>PF</th>
+                    <th>FGM</th>
+                    <th>FGA</th>
+                    <th>FG%</th>
+                    <th>3PTM</th>
+                    <th>3PTA</th>
+                    <th>3PT%</th>
+                    <th>FTM</th>
+                    <th>FTA</th>
+                    <th>FT%</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td id='name'></th>
+                    <td id = 'team'></th>
+                    <td id = 'gp'></th>
+                    <td id = 'min'></th>
+                    <td id = 'ppg'></th>
+                    <td id = 'oreb'>Oreb</th>
+                    <td id = 'dreb'>Dreb</th>
+                    <td id = 'reb'>Reb</th>
+                    <td id = 'ast'>Ast</th>
+                    <td id = 'stl'>Stl</th>
+                    <td id = 'blk'>Blk</th>
+                    <td id = 'to'>TO</th>
+                    <td id = 'pf'>PF</th>
+                    <td id = 'fgm'>FGM</th>
+                    <td id = 'fga'>FGA</th>
+                    <td id = 'fgp'>FG%</th>
+                    <td id = '3ptm'>3PTM</th>
+                    <td id = '3pta'>3PTA</th>
+                    <td id = '3ptp'>3PT%</th>
+                    <td id = 'ftm'>FTM</th>
+                    <td id = 'fta'>FTA</th>
+                    <td id = 'ftp'>FT%</th>
+                    <td></td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        {{!-- end the table for the entire teams data --}}
+      </div>
+      {{!-- End what goes inside the table --}}
+
     </div>
-
-
   </div>
+
+  <div class='teamASide'>
+    Team A
+    <div class='playerInfo'></div>
+  </div>
+
+
 </div>
 
 
-{{!-- darioush figure out in class how to put the script in actual js file!!! this set up is confusing --}}
+
+</div>
+
+ <script src="/js/indexPublic.js"></script>
 
 
 
-<script>
-  var tabTextClass = '';
-
-  $(document).ready(function () {
-    //$('.sideButtonD, .dataPageContent, .playerDataD').hide();
-
-  });
-
-  //Start Side Bar functions
-  function openBar() {
-    $(".dSideBar").width('250px');
-    $(".container").css({ 'margin-left': '250px' });
-    console.log('open nav')
-  }
-
-  function closeBar() {
-    $('.dSideBar').width('0px');
-    $('.container').css({ 'margin-left': '0px' });
-  }
-
-  $('.sideButtonD').on('click', function () {
-    openBar();
-  });
-
-  $('.closeBar').on('click', function () {
-    closeBar();
-  });
-  //End Side Bar Functions
-
-
-
-  //function that switches between tabs
-  $('.dataPage').on('click', function () {
-    $(tabTextClass).hide();
-    var tabText = jQuery(this).text();
-    tabTextClass = "#" + tabText;
-    $(tabTextClass).show(function () {
-      $('.dataPageContent').slidedown('slow')
-    });
-
-  });
-
-
-  var colors = ['#007bff', '#28a745', '#444444', '#c3e6cb', '#dc3545', '#6c757d'];
-  var chBar = $("chBar");
-  var chartData = {
-    labels: ["Player", "Year", "Season", "Team", "GP", "Min", "PPG",
-      "Orb", "Dreb", "Reb", "Ast", "Stl", "Blk", "TO", "PF", "FGM", "FGA",
-      "3PTM", "3PTA", "FTM", "FTA"],
-    datasets: [{
-      data: ["Aaron Gordon", "2018-2019", "REG", "Magic",
-        78, 33.75, 15.97, 1.65, 5.71, 7.36, 3.71, 0.73, 0.72, 2.08, 2.21,
-        6.03, 13.41, 1.55, 4.45, 2.37, 3.24],
-      backgroundColor: colors[0]
-    }]
-  };
-
-  if (chBar) {
-    new Chart(chBar, {
-      type: "bar",
-      data: chartData,
-      options: {
-        scales: {
-          xAxes: [{
-            barPercentage: 0.4,
-            categoryPercentage: 0.5
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: false
-            }
-          }]
-        },
-        legend: {
-          display: false
-        }
-      }
-    });
-  };
-
-
-  $('#searchButton').on('click', function () {
-    var playerText = $('#playerSelected').html();
-    console.log(playerText + ' search term');
-
-  })
-
-
-
-  $("#find-player").on("click", function(event) {
-    $.ajax({
-        url: "https://nba-players.herokuapp.com/players-stats",
-        method: "GET"
-    }).done(function(response) {
-      console.log(response)
-    });
-  });
-
-</script>

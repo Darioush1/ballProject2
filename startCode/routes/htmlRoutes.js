@@ -4,12 +4,12 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     console.log()
-    db.model.findAll({}).then(function(dbPlayers) {
+    //db.model.findAll({}).then(function(dbPlayers) {
       res.render("index", {
         msg: "Welcome!",
-        examples: dbPlayers
+        //examples: dbPlayers
       });
-    });
+    //});
   });
 
   // Load example page and pass in an example by id
