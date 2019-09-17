@@ -1,6 +1,4 @@
 module.exports = function(sequelize, DataTypes) {
-  
-
 	var Nbastat = sequelize.define('Nbastat', {
 		id: {
 			type: DataTypes.INTEGER(11),
