@@ -3,6 +3,7 @@ var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+var playerText = '';
 var name = '';
 var team = '';
 var gp = 0;
@@ -18,124 +19,12 @@ var to = 0;
 var pf = 0;
 var fgm = 0;
 var fga = 0;
-var fgp =0;
+var fgp = 0;
 var ptm = 0;
 var pta = 0;
 var ptp = 0;
 var ftm = 0;
 
-
-                    // <th id = 'oreb'>Oreb</th>
-                    // <th id = 'dreb'>Dreb</th>
-                    // <th id = 'reb'>Reb</th>
-                    // <th id = 'ast'>Ast</th>
-                    // <th id = 'stl'>Stl</th>
-                    // <th id = 'blk'>Blk</th>
-                    // <th id = 'to'>TO</th>
-                    // <th id = 'pf'>PF</th>
-                    // <th id = 'fgm'>FGM</th>
-                    // <th id = 'fga'>FGA</th>
-                    // <th id = 'fgp'>FG%</th>
-                    // <th id = '3ptm'>3PTM</th>
-                    // <th id = '3pta'>3PTA</th>
-                    // <th id = '3ptp'>3PT%</th>
-                    // <th id = 'ftm'>FTM</th>
-                    // <th id = 'fta'>FTA</th>
-                    // <th id = 'ftp'>FT%</th>
-
-// The API object contains methods for each kind of request we'll make
-// var API = {
-//   saveExample: function(example) {
-//     return $.ajax({
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       type: "POST",
-//       url: "api/examples",
-//       data: JSON.stringify(example)
-//     });
-//   },
-//   getExamples: function() {
-//     return $.ajax({
-//       url: "api/examples",
-//       type: "GET"
-//     });
-//   },
-//   deleteExample: function(id) {
-//     return $.ajax({
-//       url: "api/examples/" + id,
-//       type: "DELETE"
-//     });
-//   }
-// };
-
-// // refreshExamples gets new examples from the db and repopulates the list
-// var refreshExamples = function() {
-//   API.getExamples().then(function(data) {
-//     var $examples = data.map(function(example) {
-//       var $a = $("<a>")
-//         .text(example.text)
-//         .attr("href", "/example/" + example.id);
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": example.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $exampleList.empty();
-//     $exampleList.append($examples);
-//   });
-// };
-
-// // handleFormSubmit is called whenever we submit a new example
-// // Save the new example to the db and refresh the list
-// var handleFormSubmit = function(event) {
-//   event.preventDefault();
-
-//   var example = {
-//     text: $exampleText.val().trim(),
-//     description: $exampleDescription.val().trim()
-//   };
-
-//   if (!(example.text && example.description)) {
-//     alert("You must enter an example text and description!");
-//     return;
-//   }
-
-//   API.saveExample(example).then(function() {
-//     refreshExamples();
-//   });
-
-//   $exampleText.val("");
-//   $exampleDescription.val("");
-// };
-
-// // handleDeleteBtnClick is called when an example's delete button is clicked
-// // Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
-
-//   API.deleteExample(idToDelete).then(function() {
-//     refreshExamples();
-//   });
-// };
-
-// // Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 
 var tabTextClass = '';
@@ -170,7 +59,7 @@ $('.closeBar').on('click', function () {
 
 //function that switches between tabs
 $('.dataPage').on('click', function () {
-  
+
   $(tabTextClass).hide();
   var tabText = jQuery(this).text();
   tabTextClass = "#" + tabText;
@@ -218,7 +107,8 @@ if (chBar) {
 
 
 $('#searchButton').on('click', function () {
-  var playerText = $('#playerSelected').val();
+  playerText = $('#playerSelected').text('');
+  console.log('player Text = ' + playerText)
   var chosenPlayer = '';
 
 
@@ -228,22 +118,88 @@ $('#searchButton').on('click', function () {
     url: "./api/players",
     method: "GET"
   }).done(function (response) {
-    console.log(response[0])
+    console.log(playerText)
+
     for (var i = 0; i < response.length; i++) {
       if (playerText == response[i].players) {
         var playerName = response[i].players;
         var realTeam = response[i].Team;
         chosenPlayer = response[i].id;
-        console.log(chosenPlayer + ' id');
+        console.log(response[i] + ' id');
         $('#name').text(response[i].players);
         $('#team').text(response[i].team);
-        $('#gp').val(gp);  
+        $('#gp').val(gp);
         $('#min').val();
         $('#ppg').val();
+
+        populateTable()
+
+        var newPlayerCard = '<div class="playerCard">' +
+          '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+          '<div class="imageInfo">' + 'j' +
+          '<hr>' +
+          '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + realTeam + '</span>'
+          + '</div>' +
+          '</div>'
+          ;;
+
+
+
+        //function addPlayerCard() {
+        // console.log('player card button')
+        // $('.playerInfo').append(newPlayerCard)
+        //};
+
+        
+        function populateTable(event) {
+          console.log('populateTable called');
+          event.preventdDefault();
+          console.log('this is event ' + event)
+          if (!playerText.val().trim().trim()) {
+            return;
+          }
+          enterPlayerChoiceA({
+            player: playerText
+          })
+        };
+
+        function getPlayers() {
+          $.get("/api/players", function (data) {
+            console.log('getPlayers function called');
+            var cardToAdd = [];
+            for (var i = 0; i < data.length; i++) {
+              cardToAdd.push();
+            }
+            //renderAuthorList(cardToAdd);
+            playerText.val()
+          });
+        }
+
+
+        function userChoice(playerData) {
+          console.log('userChoice called');
+          console.log("This is player Data " + playerData)
+          $.post('/api/players/players', playerData)
+            .then(getPlayers)
+        }
+
+        function enterPlayerChoiceA(playerData) {
+          console.log('enterPlayerChoiceA')
+          $.post("/api/players", playerData)
+            .then(getPlayers);
+        }
+
+
+        console.log(playerText);
         //addPlayerCard();
-        getPlayers();
+        getPlayers(function () {
+          console.log(playerName);
+          console.log(realTeam);
+        })
+          ;
 
       } else {
+
 
       }
 
@@ -252,53 +208,65 @@ $('#searchButton').on('click', function () {
   });
 
 });
-
 var newPlayerCard = '<div class="playerCard">' +
-  '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-  '<div class="imageInfo">' + playerName +
-  '<hr>' +
-  '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + realTeam + '</span>'
-  + '</div>' +
-  '</div>'
-  ;;
+'<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+'<div class="imageInfo">' + 'j' +
+'<hr>' +
+'<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'placegolder' + '</span>'
++ '</div>' +
+'</div>'
+;;
+
+// var newPlayerCard = '<div class="playerCard">' +
+//   '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+//   '<div class="imageInfo">' + playerName +
+//   '<hr>' +
+//   '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + realTeam + '</span>'
+//   + '</div>' +
+//   '</div>'
+//   ;;
 
 
 
-//function addPlayerCard() {
- // console.log('player card button')
- // $('.playerInfo').append(newPlayerCard)
-//};
+// //function addPlayerCard() {
+// // console.log('player card button')
+// // $('.playerInfo').append(newPlayerCard)
+// //};
 
-function getPlayers() {
-  $.get("/api/PLayers", function(data) {
-    var cardToAdd = [];
-    for (var i = 0; i < data.length; i++) {
-      cardToAdd.push(addPlayerCard(data[i]));
-    }
-    renderAuthorList(cardToAdd);
-    nameInput.val("");
-  });
-}
+// function getPlayers() {
+//   $.get("/api/players", function (data) {
+//     console.log('getPlayers function called');
+//     var cardToAdd = [];
+//     for (var i = 0; i < data.length; i++) {
+//       cardToAdd.push();
+//     }
+//     //renderAuthorList(cardToAdd);
+//     playerText.val()
+//   });
+// }
 
-function populateTable(event) {
-  event.preventdDefault();
-  console.log('this is event ' + event)
-  if (!playerText.val().trim().trim()) {
-    return;
-  }
-  enterPlayerChoiceA({})
-};
+// function populateTable(event) {
+//   console.log('populateTable called');
+//   event.preventdDefault();
+//   console.log('this is event ' + event)
+//   if (!playerText.val().trim().trim()) {
+//     return;
+//   }
+//   enterPlayerChoiceA({})
+// };
 
-function userChoice (playerData) {
-  console.log("This is player Data " + playerData)
-  $.post('/api/players', playerData)
-    .then(getPlayers)
-}
+// function userChoice(playerData) {
+//   console.log('userChoice called');
+//   console.log("This is player Data " + playerData)
+//   $.post('/api/players', playerData)
+//     .then(getPlayers)
+// }
 
-function enterPlayerChoiceA(playerData) {
-  $.post("/api/players", playerData)
-    .then(getPlayers);
-}
+// function enterPlayerChoiceA(playerData) {
+//   console.log('enterPlayerChoiceA')
+//   $.post("/api/players", playerData)
+//     .then(getPlayers);
+// }
 
 
 
