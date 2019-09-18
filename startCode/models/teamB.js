@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
-  
 
-	var TeamA = sequelize.define('TeamA', {
+
+	var TeamB = sequelize.define('TeamB', {
 		
 		players: {
 			type: DataTypes.STRING(25),
@@ -93,17 +93,17 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			field: 'FG%'
 		},
-		threePtm: {
+		'3Ptm': {
 			type: DataTypes.DECIMAL,
 			allowNull: true,
 			field: '3PTM'
 		},
-		threePta: {
+		'3Pta': {
 			type: DataTypes.DECIMAL,
 			allowNull: true,
 			field: '3PTA'
 		},
-		threePt: {
+		'3Pt': {
 			type: DataTypes.DECIMAL,
 			allowNull: true,
 			field: '3PT%'
@@ -125,8 +125,7 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	}, {
 		timestamps: false
-});
+	});
 
-
-return TeamA;
+	return TeamB;
 };

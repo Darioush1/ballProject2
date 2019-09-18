@@ -4,6 +4,7 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 var playerText = '';
+var playerData;
 var name = '';
 var team = '';
 var gp = 0;
@@ -119,48 +120,63 @@ $('#searchButton').on('click', function () {
   function getPlayers() {
     var playerName = $('#playerSelected').val();
     $.get("/api/search/" + playerName, function (data) {
-      console.log(data)
+      console.log(data);
      
-
-      for (var i = 0; i < data.length; i++) {
-        if (playerText == data[i].players) {
-          
-          var realTeam = data[i].Team;
-          chosenPlayer = data[i].id;
-          console.log(data[i] + ' id');
-
-
-          var newPlayerCard = '<div class="playerCard">' +
-            '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-            '<div class="imageInfo">' + 'j' +
-            '<hr>' +
-            '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'realTeam' + '</span>'
-            + '</div>' +
-            '</div>'
-            ;;
-
-
-        } else {
-        }
-      }
-
+      name = data.players;
+      team = data.team; 
+      gp = data.gp;
+      min = data.min;
+      ppg = data.ppg;
+      oreb = data.oreb;
+      dreb = data.dreb;
+      reb = data.reb;
+      ast = data.ast;
+      stl = data.stl;
+      blk = data.blk;
+      to = data.to;
+      pf = data.pf;
+      fgm = data.fgm;
+      fgp = data.fgp;
+      ptm = data.ptm;
+      pta = data.pta;
+      ptp = data.ptp;
+      ftm = data.ftm;
+      $('#players').text(name)
+     
     });
 
   }
 });
 
-function userChoice(playerData) {
-  console.log('userChoice called');
-  console.log("This is player Data " + playerData)
-  $.post('/api/players/players', playerData)
-    .then(getPlayers)
+$('#addPlayerA').on('click', function () {
+  addPlayerA(playerText);
+});
+
+function addPlayerA (data) {
+
+  $.post("/api/search/a/" + data ,function () {
+    
+  }).then(
+    "INSERT data INTO teamas"
+  )
 };
 
-function enterPlayerChoiceA(playerData) {
-  console.log('enterPlayerChoiceA')
-  $.post("/api/players", playerData)
-    .then(getPlayers);
-};
+$('#addPlayerB').on('click', function () {
+    addPlayerB(playerText);
+});
+
+function addPlayerB (data) {
+
+  console.log(data)
+  $.post("/api/search/b/" + data ,function () {
+    
+  }).then(
+    "INSERT data INTO teamas"
+  )
+}
+
+
+
 var newPlayerCard = '<div class="playerCard">' +
   '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
   '<div class="imageInfo">' + 'j' +
@@ -169,4 +185,5 @@ var newPlayerCard = '<div class="playerCard">' +
   + '</div>' +
   '</div>'
   ;;
+
 
