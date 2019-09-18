@@ -114,167 +114,59 @@ $('#searchButton').on('click', function () {
 
   $('.sideButtonD, .playerDataD, #afterSearch').show();
   $('.header1').hide();
-  $.ajax({
-    url: "./api/players",
-    method: "GET"
-  }).done(function (response) {
-    console.log(playerText)
+  getPlayers();
 
-    for (var i = 0; i < response.length; i++) {
-      if (playerText == response[i].players) {
-        var playerName = response[i].players;
-        var realTeam = response[i].Team;
-        chosenPlayer = response[i].id;
-        console.log(response[i] + ' id');
-        // $('#name').text(response[i].players);
-        // $('#team').text(response[i].team);
-        // $('#gp').val(gp);
-        // $('#min').val();
-        // $('#ppg').val();
-        getPlayers();
-        populateTable()
+  function getPlayers() {
+    var playerName = $('#playerSelected').val();
+    $.get("/api/search/" + playerName, function (data) {
+      console.log(data)
+     
 
-        var newPlayerCard = '<div class="playerCard">' +
-          '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-          '<div class="imageInfo">' + 'j' +
-          '<hr>' +
-          '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'realTeam' + '</span>'
-          + '</div>' +
-          '</div>'
-          ;;
+      for (var i = 0; i < data.length; i++) {
+        if (playerText == data[i].players) {
+          
+          var realTeam = data[i].Team;
+          chosenPlayer = data[i].id;
+          console.log(data[i] + ' id');
 
 
+          var newPlayerCard = '<div class="playerCard">' +
+            '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+            '<div class="imageInfo">' + 'j' +
+            '<hr>' +
+            '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'realTeam' + '</span>'
+            + '</div>' +
+            '</div>'
+            ;;
 
-        //function addPlayerCard() {
-        // console.log('player card button')
-        // $('.playerInfo').append(newPlayerCard)
-        //};
 
-        
-        // function populateTable(event) {
-        //   console.log('populateTable called');
-        //   event.preventdDefault();
-        //   console.log('this is event ' + event)
-        //   if (!playerText.val().trim().trim()) {
-        //     return;
-        //   }
-        //   enterPlayerChoiceA({
-        //     player: playerText
-        //   })
-        // };
-
-        function getPlayers() {
-          $.get("/api/players", function (data) {
-            console.log("inside get player the search is " + playerText);
-            //var cardToAdd = [];
-            for (var i = 0; i < response.length; i++) {
-              if (playerText == response[i].players) {
-                var playerName = response[i].players;
-                var realTeam = response[i].Team;
-                chosenPlayer = response[i].id;
-                console.log(response[i] + ' id');}
-            //renderAuthorList(cardToAdd);
-            playerText.val('')
-          );
+        } else {
         }
-
-
-        function userChoice(playerData) {
-          console.log('userChoice called');
-          console.log("This is player Data " + playerData)
-          $.post('/api/players/players', playerData)
-            .then(getPlayers)
-        }
-
-        function enterPlayerChoiceA(playerData) {
-          console.log('enterPlayerChoiceA')
-          $.post("/api/players", playerData)
-            .then(getPlayers);
-        }
-
-
-        console.log(playerText);
-        //addPlayerCard();
-        getPlayers(function () {
-          console.log(playerName);
-          console.log(realTeam);
-        })
-          ;
-
-      } else {
-
-
       }
 
+    });
 
-    }
-  });
-
+  }
 });
+
+function userChoice(playerData) {
+  console.log('userChoice called');
+  console.log("This is player Data " + playerData)
+  $.post('/api/players/players', playerData)
+    .then(getPlayers)
+};
+
+function enterPlayerChoiceA(playerData) {
+  console.log('enterPlayerChoiceA')
+  $.post("/api/players", playerData)
+    .then(getPlayers);
+};
 var newPlayerCard = '<div class="playerCard">' +
-'<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-'<div class="imageInfo">' + 'j' +
-'<hr>' +
-'<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'placegolder' + '</span>'
-+ '</div>' +
-'</div>'
-;;
-
-// var newPlayerCard = '<div class="playerCard">' +
-//   '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-//   '<div class="imageInfo">' + playerName +
-//   '<hr>' +
-//   '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + realTeam + '</span>'
-//   + '</div>' +
-//   '</div>'
-//   ;;
-
-
-
-// //function addPlayerCard() {
-// // console.log('player card button')
-// // $('.playerInfo').append(newPlayerCard)
-// //};
-
-// function getPlayers() {
-//   $.get("/api/players", function (data) {
-//     console.log('getPlayers function called');
-//     var cardToAdd = [];
-//     for (var i = 0; i < data.length; i++) {
-//       cardToAdd.push();
-//     }
-//     //renderAuthorList(cardToAdd);
-//     playerText.val()
-//   });
-// }
-
-// function populateTable(event) {
-//   console.log('populateTable called');
-//   event.preventdDefault();
-//   console.log('this is event ' + event)
-//   if (!playerText.val().trim().trim()) {
-//     return;
-//   }
-//   enterPlayerChoiceA({})
-// };
-
-// function userChoice(playerData) {
-//   console.log('userChoice called');
-//   console.log("This is player Data " + playerData)
-//   $.post('/api/players', playerData)
-//     .then(getPlayers)
-// }
-
-// function enterPlayerChoiceA(playerData) {
-//   console.log('enterPlayerChoiceA')
-//   $.post("/api/players", playerData)
-//     .then(getPlayers);
-// }
-
-
-
-
-
-
-
+  '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+  '<div class="imageInfo">' + 'j' +
+  '<hr>' +
+  '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'placegolder' + '</span>'
+  + '</div>' +
+  '</div>'
+  ;;
 
