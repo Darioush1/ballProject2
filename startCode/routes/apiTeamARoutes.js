@@ -21,7 +21,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/players/players", function(req, res) {
+  app.get("/api/players", function(req, res) {
     db.TeamA.findOne({
       where: {players: ''},
       attributes: ['players', ['players']]
@@ -32,9 +32,9 @@ module.exports = function(app) {
 
   // Create a new example
   app.post("/api/players", function(req, res) {
-    db.TeamA.create(
+    db.TeamA.create({
         Players: req.players.players,
-        ).then(function(dbTeamA) {
+    }).then(function(dbTeamA) {
       
     }).then(function(dbTeamA) {
         res.json(dbTeamA);

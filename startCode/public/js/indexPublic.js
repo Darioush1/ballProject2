@@ -107,7 +107,7 @@ if (chBar) {
 
 
 $('#searchButton').on('click', function () {
-  playerText = $('#playerSelected').text('');
+  playerText = $('#playerSelected').val();
   console.log('player Text = ' + playerText)
   var chosenPlayer = '';
 
@@ -126,19 +126,19 @@ $('#searchButton').on('click', function () {
         var realTeam = response[i].Team;
         chosenPlayer = response[i].id;
         console.log(response[i] + ' id');
-        $('#name').text(response[i].players);
-        $('#team').text(response[i].team);
-        $('#gp').val(gp);
-        $('#min').val();
-        $('#ppg').val();
-
+        // $('#name').text(response[i].players);
+        // $('#team').text(response[i].team);
+        // $('#gp').val(gp);
+        // $('#min').val();
+        // $('#ppg').val();
+        getPlayers();
         populateTable()
 
         var newPlayerCard = '<div class="playerCard">' +
           '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
           '<div class="imageInfo">' + 'j' +
           '<hr>' +
-          '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + realTeam + '</span>'
+          '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'realTeam' + '</span>'
           + '</div>' +
           '</div>'
           ;;
@@ -151,28 +151,31 @@ $('#searchButton').on('click', function () {
         //};
 
         
-        function populateTable(event) {
-          console.log('populateTable called');
-          event.preventdDefault();
-          console.log('this is event ' + event)
-          if (!playerText.val().trim().trim()) {
-            return;
-          }
-          enterPlayerChoiceA({
-            player: playerText
-          })
-        };
+        // function populateTable(event) {
+        //   console.log('populateTable called');
+        //   event.preventdDefault();
+        //   console.log('this is event ' + event)
+        //   if (!playerText.val().trim().trim()) {
+        //     return;
+        //   }
+        //   enterPlayerChoiceA({
+        //     player: playerText
+        //   })
+        // };
 
         function getPlayers() {
           $.get("/api/players", function (data) {
-            console.log('getPlayers function called');
-            var cardToAdd = [];
-            for (var i = 0; i < data.length; i++) {
-              cardToAdd.push();
-            }
+            console.log("inside get player the search is " + playerText);
+            //var cardToAdd = [];
+            for (var i = 0; i < response.length; i++) {
+              if (playerText == response[i].players) {
+                var playerName = response[i].players;
+                var realTeam = response[i].Team;
+                chosenPlayer = response[i].id;
+                console.log(response[i] + ' id');}
             //renderAuthorList(cardToAdd);
-            playerText.val()
-          });
+            playerText.val('')
+          );
         }
 
 

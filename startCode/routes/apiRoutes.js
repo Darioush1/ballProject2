@@ -22,10 +22,11 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/players/players", function(req, res) {
+  app.get("/api/search/:players", function(req, res) {
     db.Nbastat.findOne({
-      where: {players: ''},
-      attributes: ['players', ['players']]
+      where: {
+        players: req.params.players
+      }
     }).then(function(dbNbastat) {
       res.json(dbNbastat);
     });
