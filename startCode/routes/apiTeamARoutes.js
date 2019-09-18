@@ -11,7 +11,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/players/:id", function(req, res) {
+  app.get("/api/id", function(req, res) {
     db.TeamA.findOne({
       where: {
         id: req.params.id
