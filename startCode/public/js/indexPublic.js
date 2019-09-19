@@ -3,7 +3,7 @@ var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
-var playerText = '';
+//var playerText = '';
 var playerData;
 var name = '';
 var team = '';
@@ -64,8 +64,6 @@ $('.dataPage').on('click', function () {
   $(tabTextClass).hide();
   var tabText = jQuery(this).text();
   tabTextClass = "#" + tabText;
-  console.log(tabTextClass);
-  console.log(tabText);
   $(tabTextClass).show(function () {
     $('.tabTextClass').slideDown('slow')
   });
@@ -106,24 +104,16 @@ if (chBar) {
   });
 };
 
-
-$('#searchButton').on('click', function () {
-  playerText = $('#playerSelected').val();
-  console.log('player Text = ' + playerText)
-  var chosenPlayer = '';
-
-
-  $('.sideButtonD, .playerDataD, #afterSearch').show();
-  $('.header1').hide();
+$('#searchButton2').on('click', function () {
+  var playertext = '';
+  playerText = $('#playerSelected2').val();
   getPlayers();
-
   function getPlayers() {
-    var playerName = $('#playerSelected').val();
-    $.get("/api/search/" + playerName, function (data) {
+    var playerName = $('#playerSelected2').val();
+    $.get("/api/search/" + playerName, function createPlayerRow(data) {
       console.log(data);
-     
       name = data.players;
-      team = data.team; 
+      team = data.team;
       gp = data.gp;
       min = data.min;
       ppg = data.ppg;
@@ -141,40 +131,132 @@ $('#searchButton').on('click', function () {
       pta = data.pta;
       ptp = data.ptp;
       ftm = data.ftm;
-      $('#players').text(name)
-     
+      $('#players').text(name);
+      $('#team').text(team);
+      $('#min').text(min);
+      $('#ppg').text(ppg);
+      $('#oreb').text(oreb);
+      $('#dreb').text(dreb);
+      $('#reb').text(reb);
+      $('#ast').text(ast);
+      $('#stl').text(stl);
+      $('#blk').text(blk);
+      $('#to').text(to);
+      $('#pf').text(pf);
+      $('#fgm').text(fgm);
+      $('#fga').text(fga);
+      $('#ptm').text(ptm);
+      $('#pta').text(pta);
+      $('#ptp').text(ptp);
+      $('#ftm').text(ftm);
+
+    });
+  }
+});
+
+$('#searchButton').on('click', function () {
+  var playerText = ''
+  playerText = $('#playerSelected').val();
+  var chosenPlayer = '';
+
+
+  $('.sideButtonD, .playerDataD, #afterSearch').show();
+  $('.header1').hide();
+  getPlayers();
+
+  function getPlayers() {
+    var playerName = $('#playerSelected').val();
+    $.get("/api/search/" + playerName, function createPlayerRow(data) {
+      console.log(data);
+      name = data.players;
+      team = data.team;
+      gp = data.gp;
+      min = data.min;
+      ppg = data.ppg;
+      oreb = data.oreb;
+      dreb = data.dreb;
+      reb = data.reb;
+      ast = data.ast;
+      stl = data.stl;
+      blk = data.blk;
+      to = data.to;
+      pf = data.pf;
+      fgm = data.fgm;
+      fgp = data.fgp;
+      ptm = data.ptm;
+      pta = data.pta;
+      ptp = data.ptp;
+      ftm = data.ftm;
+      $('#players').text(name);
+      $('#team').text(team);
+      $('#min').text(min);
+      $('#ppg').text(ppg);
+      $('#oreb').text(oreb);
+      $('#dreb').text(dreb);
+      $('#reb').text(reb);
+      $('#ast').text(ast);
+      $('#stl').text(stl);
+      $('#blk').text(blk);
+      $('#to').text(to);
+      $('#pf').text(pf);
+      $('#fgm').text(fgm);
+      $('#fga').text(fga);
+      $('#ptm').text(ptm);
+      $('#pta').text(pta);
+      $('#ptp').text(ptp);
+      $('#ftm').text(ftm);
+
     });
 
   }
 });
 
 $('#addPlayerA').on('click', function () {
+  var playerText = '';
+  playerText = $('#players').html();
+  console.log(playerText);
+  function addPlayerA(data) {
+
+    $.post("/api/search/a/" + data, function () {
+  
+    }).then(
+      "INSERT data INTO teamas"
+    )
+  };
   addPlayerA(playerText);
+  
 });
 
-function addPlayerA (data) {
 
-  $.post("/api/search/a/" + data ,function () {
-    
-  }).then(
-    "INSERT data INTO teamas"
-  )
-};
 
 $('#addPlayerB').on('click', function () {
-    addPlayerB(playerText);
+  var playerText = '';
+  playerText = $('#players').text();
+  function addPlayerB(data) {
+
+    console.log(data)
+    $.post("/api/search/b/" + data, function () {
+  
+    }).then(
+      "INSERT data INTO teamas"
+    )
+  };
+
+  addPlayerB(playerText);
+  console.log(playerText + 'BBBB')
 });
 
-function addPlayerB (data) {
 
-  console.log(data)
-  $.post("/api/search/b/" + data ,function () {
-    
-  }).then(
-    "INSERT data INTO teamas"
-  )
+
+function createPlayerRow(data) {
+  console.log("creat player row called with data? " + data)
+  var newTr = $("<tr>");
+  newTr.data("player", data);
+  newTr.append(newRow);
+
+  newTr.prepend("<button id='addPlayerA'>" + "Team A" + "</button>" + "<button id='addPlayerB'>" + "Team B" + "</button>");
+  return newTr;
 }
-
 
 
 var newPlayerCard = '<div class="playerCard">' +
@@ -186,4 +268,8 @@ var newPlayerCard = '<div class="playerCard">' +
   '</div>'
   ;;
 
+var newRow = "<td id='players'>" + "</td>" + "<td id='team'>" + "</td>" + "<td id='gp'>" + "</td>" + "<td id='min'>" + "</td>" + "<td id='ppg'>" + "</td>" + "<td id='oreb'>" + "</td>" + "<td id='dreb'>" + "</td>" + "<td id='reb'>" + "</td>" + "<td id='ast'>" + "</td>" + "<td id='stl'>" + "</td>" + "<td id='blk'>" + "</td>" + "<td id='to'>" + "</td>" + "<td id='pf'>" + "</td>" + "<td id='fgm'>" + "</td>" + "<td id='fga'>" + "</td>" + "<td id='fgp'>" + "</td>" + "<td id='ptm'>" + "</td>" + "<td id='pta'>" + "</td>" + "<td id='ptp'>" + "</td>" + "<td id='ftm'>" + "</td>";
 
+function appendRow() {
+  $('tbody').append(newRow)
+}
