@@ -12,13 +12,13 @@
 
 
   {{!-- main part of the page --}}
-   <div class="container">
+  <div class="container">
     {{!-- this is the opening screen header --}}
     <div class='header1'>
       <div class="row" id="headerRow">
         <div class="col-8 offset-2">
-          <h1>{{msg}}</h1>
-          <h2>The GOAT</h2>
+          {{!-- <h1>{{msg}}</h1> --}}
+          <h2 id='headerText'>The GOAT</h2>
           ​
           {{!-- Search Bar --}}
           <form id='submitBar'>
@@ -35,34 +35,37 @@
     </div>
     {{!-- the opening screen header ends here --}}
 
-{{!-- Here is what is presented after the intial search --}}
-    <button class='sideButtonD'>open</button>
+    {{!-- Here is what is presented after the intial search --}}
+
 
     <div class="row" id='afterSearch'>
+      
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>The GOAT</h2>
+        {{!-- <h1>{{msg}}</h1> --}}
+        <h2 id='headerText'>The GOAT</h2>
 
         {{!-- end header --}}
         ​
         {{!-- Search Bar --}}
         <form id='submitBar'>
           <div class="form-group">
-            <input type="search" class="form-control" id="playerSelected" placeholder="Pick A Player">
+            <input type="search" class="form-control" id="playerSelected2" placeholder="Pick A Player">
           </div>
-          <button type="button" class="btn btn-primary" id='searchButton'>Submit</button>
+          <button type="button" class="btn btn-primary" id='searchButton2'>Submit</button>
         </form>
         {{!-- Search Bar --}}
+        <button class='sideButtonD'>open</button>
       </div>
+
       </form>
 
       {{!-- tab section to help players make informed descisions --}}
       <div class='playerDataD'>
-          <button class='dataPage'>Player</button>
-          <button class='dataPage'>Graph</button>
-          <button class='dataPage'>News</button>
-          <button class='dataPage'>Rank</button>
-          <button class='dataPage'>Team</button>
+        <button class='dataPage'>Player</button>
+        <button class='dataPage'>Graph</button>
+        <button class='dataPage'>News</button>
+        <button class='dataPage'>Rank</button>
+        <button class='dataPage'>Team</button>
       </div>
       {{!-- end tab table to help players make informed descisions --}}
 
@@ -81,60 +84,59 @@
                 <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
               </div>
             </div>
+
             <div class="panel-body table-responsive">
               <table class="table countries">
                 <thead>
                   <tr>
                     <button id='addPlayerA'>Team A</button>
                     <button id='addPlayerB'>Team B</button>
-                    <th></th>
                     <th>Player</th>
                     <th>Team</th>
-                    <th >GP</th>
-                    <th >Min</th>
-                    <th >PPG</th>
-                    <th >Oreb</th>
-                    <th >Dreb</th>
-                    <th >Reb</th>
-                    <th >Ast</th>
-                    <th >Stl</th>
-                    <th >Blk</th>
-                    <th >TO</th>
-                    <th >PF</th>
-                    <th >FGM</th>
-                    <th >FGA</th>
-                    <th >FG%</th>
-                    <th >3PTM</th>
-                    <th >3PTA</th>
-                    <th >3PT%</th>
-                    <th >FTM</th>
+                    <th>GP</th>
+                    <th>Min</th>
+                    <th>PPG</th>
+                    <th>Oreb</th>
+                    <th>Dreb</th>
+                    <th>Reb</th>
+                    <th>Ast</th>
+                    <th>Stl</th>
+                    <th>Blk</th>
+                    <th>TO</th>
+                    <th>PF</th>
+                    <th>FGM</th>
+                    <th>FGA</th>
+                    <th>FG%</th>
+                    <th>3PTM</th>
+                    <th>3PTA</th>
+                    <th>3PT%</th>
+                    <th>FTM</th>
                     <th>FTA</th>
                     <th>FT%</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                    <td id = 'players'></td>
-                    <td id = 'team'></td>
-                    <td id = 'gp'></td>
-                    <td id = 'min'></td>
-                    <td id = 'ppg'></td>
-                    <td id = 'oreb'></td>
-                    <td id = 'dreb'></td>
-                    <td id = 'reb'></td>
-                    <td id = 'ast'></td>
-                    <td id = 'stl'></td>
-                    <td id = 'blk'></td>
-                    <td id = 'to'></td>
-                    <td id = 'pf'></td>
-                    <td id = 'fgm'></td>
-                    <td id = 'fga'></td>
-                    <td id = 'fgp'></td>
-                    <td id = 'ptm'></td>
-                    <td id = 'pta'></td>
-                    <td id = 'ptp'></td>
-                    <td id = 'ftm'></td>
+                    <td id='players'></td>
+                    <td id='team'></td>
+                    <td id='gp'></td>
+                    <td id='min'></td>
+                    <td id='ppg'></td>
+                    <td id='oreb'></td>
+                    <td id='dreb'></td>
+                    <td id='reb'></td>
+                    <td id='ast'></td>
+                    <td id='stl'></td>
+                    <td id='blk'></td>
+                    <td id='to'></td>
+                    <td id='pf'></td>
+                    <td id='fgm'></td>
+                    <td id='fga'></td>
+                    <td id='fgp'></td>
+                    <td id='ptm'></td>
+                    <td id='pta'></td>
+                    <td id='ptp'></td>
+                    <td id='ftm'></td>
                   </tr>
                 </tbody>
               </table>
@@ -217,31 +219,36 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td id='name'></th>
-                    <td id = 'team'></th>
-                    <td id = 'gp'></th>
-                    <td id = 'min'></th>
-                    <td id = 'ppg'></th>
-                    <td id = 'oreb'>Oreb</th>
-                    <td id = 'dreb'>Dreb</th>
-                    <td id = 'reb'>Reb</th>
-                    <td id = 'ast'>Ast</th>
-                    <td id = 'stl'>Stl</th>
-                    <td id = 'blk'>Blk</th>
-                    <td id = 'to'>TO</th>
-                    <td id = 'pf'>PF</th>
-                    <td id = 'fgm'>FGM</th>
-                    <td id = 'fga'>FGA</th>
-                    <td id = 'fgp'>FG%</th>
-                    <td id = '3ptm'>3PTM</th>
-                    <td id = '3pta'>3PTA</th>
-                    <td id = '3ptp'>3PT%</th>
-                    <td id = 'ftm'>FTM</th>
-                    <td id = 'fta'>FTA</th>
-                    <td id = 'ftp'>FT%</th>
+                    <td id='name'>
+                      </th>
+                    <td id='team'>
+                      </th>
+                    <td id='gp'>
+                      </th>
+                    <td id='min'>
+                      </th>
+                    <td id='ppg'>
+                      </th>
+                    <td id='oreb'>Oreb</th>
+                    <td id='dreb'>Dreb</th>
+                    <td id='reb'>Reb</th>
+                    <td id='ast'>Ast</th>
+                    <td id='stl'>Stl</th>
+                    <td id='blk'>Blk</th>
+                    <td id='to'>TO</th>
+                    <td id='pf'>PF</th>
+                    <td id='fgm'>FGM</th>
+                    <td id='fga'>FGA</th>
+                    <td id='fgp'>FG%</th>
+                    <td id='3ptm'>3PTM</th>
+                    <td id='3pta'>3PTA</th>
+                    <td id='3ptp'>3PT%</th>
+                    <td id='ftm'>FTM</th>
+                    <td id='fta'>FTA</th>
+                    <td id='ftp'>FT%</th>
                     <td></td>
                   </tr>
-                  
+
                 </tbody>
               </table>
             </div>
@@ -250,23 +257,20 @@
         {{!-- end the table for the entire teams data --}}
       </div>
       {{!-- End what goes inside the table --}}
+      <div class='teamASide'>
+        Team A
+        <div class='playerInfo'></div>
+      </div>
 
     </div>
   </div>
 
-  <div class='teamASide'>
-    Team A
-    <div class='playerInfo'></div>
-  </div>
 
 
 </div>
 
 
 
-</div>
-
- <script src="/js/indexPublic.js"></script>
 
 
-
+<script src="/js/indexPublic.js"></script>
