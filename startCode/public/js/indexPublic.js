@@ -87,31 +87,31 @@ if (chBar) {
 
 $('#searchButton2').on('click', function () {
   var name = '';
-var team = '';
-var gp = 0;
-var min = 0;
-var ppg = 0;
-var oreb = 0;
-var dreb = 0;
-var reb = 0;
-var ast = 0;
-var stl = 0;
-var blk = 0;
-var to = 0;
-var pf = 0;
-var fgm = 0;
-var fga = 0;
-var fgp = 0;
-var ptm = 0;
-var pta = 0;
-var ptp = 0;
-var ftm = 0;
+  var team = '';
+  var gp = 0;
+  var min = 0;
+  var ppg = 0;
+  var oreb = 0;
+  var dreb = 0;
+  var reb = 0;
+  var ast = 0;
+  var stl = 0;
+  var blk = 0;
+  var to = 0;
+  var pf = 0;
+  var fgm = 0;
+  var fga = 0;
+  var fgp = 0;
+  var ptm = 0;
+  var pta = 0;
+  var ptp = 0;
+  var ftm = 0;
   var playertext = '';
   playerText = $('#playerSelected2').val();
   getPlayers();
   function getPlayers() {
     var playerName = $('#playerSelected2').val();
-    $.get("/api/search/" + playerName, function(data) {
+    $.get("/api/search/" + playerName, function (data) {
       console.log(data);
       name = data.players;
       team = data.team;
@@ -214,49 +214,49 @@ $('#searchButton').on('click', function () {
 });
 
 $('#addPlayerA').on('click', function () {
- 
+
   var playerText = '';
   playerText = $('#players').text();
   function addPlayerA(data) {
 
     $.post("/api/search/a/" + data, function () {
-  
+
     }).then(
       "INSERT data INTO teamas"
     )
   };
 
   var newPlayerCardA = '<div class="playerCard">' +
-  '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-  '<div class="imageInfo" id="cardName">' +
-  '<hr>' +
-  '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team A' + '</span>'
-  + '</div>' +
-  '</div>'
-  ;
+    '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+    '<div class="imageInfo" id="cardName">' +
+    '<hr>' +
+    '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team A' + '</span>'
+    + '</div>' +
+    '</div>'
+    ;
   addPlayerA(playerText);
   $('.playerInfoA').append(newPlayerCardA)
   $('#cardName').html(playerText);
-  
+
 });
 
 
 
 $('#addPlayerB').on('click', function () {
   var newPlayerCardB = '<div class="playerCard">' +
-  '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-  '<div class="imageInfo" id = "players">' +  +
-  '<hr>' +
-  '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team B' + '</span>'
-  + '</div>' +
-  '</div>';
+    '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+    '<div class="imageInfo" id = "players">' + +
+    '<hr>' +
+    '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team B' + '</span>'
+    + '</div>' +
+    '</div>';
   var playerText = '';
   playerText = $('#players').text(name);
   function addPlayerB(data) {
 
     console.log(data)
     $.post("/api/search/b/" + data, function () {
-  
+
     }).then(
       "INSERT data INTO teamas"
     )
@@ -269,10 +269,10 @@ $('#addPlayerB').on('click', function () {
 
 
 function createPlayerRow(data) {
-  
+
   console.log("create player row called with data? " + data)
   var newTr = $("<tr>");
- 
+
   newTr.append(newRow);
 
   newTr.prepend("<button id='addPlayerA'>" + "Team A" + "</button>" + "<button id='addPlayerB'>" + "Team B" + "</button>");
@@ -288,7 +288,7 @@ function createPlayerRow(data) {
 //   + '</div>' +
 //   '</div>'
 //   ;
-  
+
 //   var newPlayerCardB = '<div class="playerCard">' +
 //   '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
 //   '<div class="imageInfo" id = "name">' + name +
@@ -302,3 +302,14 @@ var newRow = "<tr>" + "<td id='players'>" + "</td>" + "<td id='team'>" + "</td>"
 function appendRow() {
   $('tbody').append(newRow)
 }
+
+
+$('#headerText').on('click', function () {
+  $.ajax({
+    url: '/api/players/a',
+    type: 'DELETE',
+    success: function (response) {
+      console.log(response)
+    }
+  });
+})

@@ -53,3 +53,24 @@ module.exports = function(app) {
   });
 };
 
+
+app.delete("/api/players/a", function(req, res) {
+  db.TeamA.destroy({ 
+      where: { 
+          id: req.params.id 
+      } 
+  }).then(function(dbTeamA) {
+    res.json(dbTeamA);
+  });
+});
+
+app.delete("/api/players/b", function(req, res) {
+  db.TeamA.destroy({ 
+      where: { 
+          id: req.params.id 
+      } 
+  }).then(function(dbTeamA) {
+    res.json(dbTeamA);
+  });
+});
+};
