@@ -17,9 +17,6 @@
 
 }
 
-.header1 {
-  margin: auto;
-}
 
 #headerText {
   font-family: 'Saira Stencil One', cursive;
@@ -133,6 +130,11 @@ margin-right: auto;
   text-align: center;
   margin-left: auto;
   margin-right: auto
+}
+
+.teamSide {
+  float: left;
+  width: 50%;
 }
 
 

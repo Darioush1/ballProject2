@@ -56,7 +56,7 @@
         {{!-- Search Bar --}}
         <button class='sideButtonD'>open</button>
       </div>
-
+    </div>
 
       {{!-- tab section to help players make informed descisions --}}
       <div class='playerDataD'>
@@ -70,6 +70,9 @@
 
 
       {{!-- What goes inside tab/info portion --}}
+
+    {{!-- player tab starts here --}}
+
       <div id='Player' class='dataPageContent'>
 
         {{!-- Start Player Data Table in tab Player --}}
@@ -146,6 +149,10 @@
         {{!-- end Player Data Table in tab Player --}}
       </div>
 
+    {{!-- player tab ends here --}}
+
+    {{!-- Player Graph starts here --}}
+    
       <div id='Graph' class='dataPageContent'>
         <div class="container">
           <div class="row my-3">
@@ -165,18 +172,29 @@
         </div>
       </div>
 
+      {{!-- Player Graph ends here --}}
+
+    {{!-- news starts here --}}
       {{!-- I need to connect the previous API set up to include news articles --}}
       <div id='News' class='dataPageContent'>
         <h3>News</h3>
         <p>Here we put data</p>
       </div>
 
-      {{!-- compare to other players already chosen? --}}
+    {{!-- news ends here --}}
+
+
+    
+    {{!-- Rank Starts here --}}
+
       <div id='Rank' class='dataPageContent'>
         <h3>Rank</h3>
         <p>Here we put data</p>
       </div>
 
+    {{!-- Rank Ends Here --}}
+
+    {{!-- Team Data Starts Here --}}
       <div id='teamData' class='dataPageContent'>
         {{!-- here is the table for the entire teams data --}}
         <div class="col-sm-12 col-lg-12 col-md-12">
@@ -258,23 +276,29 @@
         </div>
         {{!-- end the table for the entire teams data --}}
       </div>
+
+    {{!-- Team Data Ends Here --}}
       {{!-- End what goes inside the table --}}
       <br>
       <hr>
-      <div class='teamASide'>
-        Team A
-        <div class='playerInfoA'></div>
-      </div>
-      <div class='teamBSide'>
-        Team B
-        <div class='playerInfoB'></div>
+
+      <div class='playerCardContainer'>
+        <div class='teamSide' id ='playerSideA'>
+          Team A
+          <div class='playerInfoA'></div>
+        </div>
+        <div class='teamSide' id = 'playerSideA'>
+          Team B
+          <div class='playerInfoB'></div>
+        </div>
       </div>
 
     </div>
+    <button id='ballDontLie'>Ball Don't Lie</button>
+    <button id='runItBack'>Run It Back</button>
+
   </div>
 
-  <button id='ballDontLie'>Ball Don't Lie</button>
-  <button id='runItBack'>Run It Back</button>
 
 
 
