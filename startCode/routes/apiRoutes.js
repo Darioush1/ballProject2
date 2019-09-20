@@ -12,6 +12,22 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/players/a", function(req, res) {
+    db.TeamA.findAll({ 
+    }).then(function(dbTeamA) {
+      console.log(db.TeamA)
+      res.json(dbTeamA);
+    });
+  });
+
+  app.get("/api/players/b", function(req, res) {
+    db.TeamB.findAll({ 
+    }).then(function(dbTeamB) {
+      console.log(db.TeamB)
+      res.json(dbTeamB);
+    });
+  });
+
   app.get("/api/players/:id", function(req, res) {
     db.Nbastat.findOne({
       where: {
@@ -115,9 +131,15 @@ module.exports = function(app) {
 
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  app.delete("/api/players/a", function(req, res) {
+    db.TeamA.destroy({where: {}}).then(function(dbTeamA) {
+      res.json(dbTeamA);
+    });
+  });
+
+  app.delete("/api/players/b", function(req, res) {
+    db.TeamB.destroy({ where: {} } }).then(function(dbTeamB) {
+      res.json(dbTeamB);
     });
   });
 };
