@@ -155,6 +155,7 @@ $('#searchButton').on('click', function () {
   $('.sideButtonD, .playerDataD, .dButton, #afterSearch').show();
   $('.header1').hide();
   getPlayers();
+  $('#Player').slideDown('slow')
   
 
 
@@ -551,6 +552,7 @@ $('#runItBack').on('click', function () {
   playerText = '';
   $('.playerCard').remove();
   $('.playerCardContainer').hide();
+  $(tabTextClass).hide();
 })
 
 $('#newsButton').on('click', function () {
@@ -601,17 +603,6 @@ $('#graphButton').on('click', function () {
   var ptp = 0;
   var ftm = 0;
 
-  function toggleDataSeries(e) {
-    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-      e.dataSeries.visible = false;
-    } else {
-      e.dataSeries.visible = true;
-    }
-    chart.render();
-  };
-
-  function chart() {
-
 
     function getPlayers() {
 
@@ -640,6 +631,9 @@ $('#graphButton').on('click', function () {
         ptp = data.ptp;
         ftm = data.ftm;
       });
+    }
+  
+      getPlayers();
 
 
 
@@ -653,6 +647,7 @@ $('#graphButton').on('click', function () {
           text: ""
         },
         axisY: {
+          includeZero: false,
           title: 'stats'
         },
         toolTip: {
@@ -664,16 +659,16 @@ $('#graphButton').on('click', function () {
         },
         data: [{
           type: "spline",
-          visible: true,
+          visible: false,
           showInLegend: true,
           yValueFormatString: "###.####",
           name: name,
           dataPoints: [
-            { label: "PPG", y: 0 },
-            { label: "OREB", y: 0 },
-            { label: "DREB", y: 0 },
-            { label: "REB", y: 0 },
-            { label: "AST", y: 0 },
+            { label: "PPG", y: 5 },
+            { label: "OREB", y: 4 },
+            { label: "DREB", y: 5 },
+            { label: "REB", y: 6 },
+            { label: "AST", y: 3 },
             { label: "STL", y: 0 },
             { label: "BLK", y: 0 },
             { label: "TO", y: 0 },
@@ -691,20 +686,26 @@ $('#graphButton').on('click', function () {
           ]
         }]
       });
-      getPlayers();
 
 
       chart.render();
 
+      function toggleDataSeries(e) {
+        if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+          e.dataSeries.visible = false;
+        } else {
+          e.dataSeries.visible = true;
+        }
+        chart.render();
+      };
 
-    };
+
+    
     // var length = chart.options.data[0].dataPoints.length;
     // chart.options.title.text = "Last DataPoint Updated";
     // console.log(ppg)
 
-  }
-  chart()
-});
+  });
 
 function clearTable() {
   $('#players').text('');
@@ -725,7 +726,67 @@ function clearTable() {
   $('#pta').text('');
   $('#ptp').text('');
   $('#ftm').text('');
-}
+};
+
+
+  function updateGraph() {
+    // var playerName = $('#playerSelected2').val();
+     $.get("/api/search/:" + playerText, function (req, res) {
+     db.Nbastat.findOne({
+       where: {
+         players:req.params.players
+       }
+     })
+     }).then(function(data){
+      console.log(data);
+      name = data.players;
+      team = data.team;
+      gp = data.gp;
+      min = data.min;
+      ppg = data.ppg;
+      oreb = data.oreb;
+      dreb = data.dreb;
+      reb = data.reb;
+      ast = data.ast;
+      stl = data.stl;
+      blk = data.blk;
+      to = data.to;
+      pf = data.pf;
+      fgm = data.fgm;
+      fga = data.fga;
+      fgp = data.fgp;
+      ptm = data.ptm;
+      pta = data.pta;
+      ptp = data.ptp;
+      ftm = data.ftm;
+      chart.options.data[0].dataPoints[0]
+      $('#players').text(name);
+      $('#team').text(team);
+      $('#min').text(min);
+      $('#ppg').text(ppg);
+      $('#oreb').text(oreb);
+      $('#dreb').text(dreb);
+      $('#reb').text(reb);
+      $('#ast').text(ast);
+      $('#stl').text(stl);
+      $('#blk').text(blk);
+      $('#to').text(to);
+      $('#pf').text(pf);
+      $('#fgm').text(fgm);
+      $('#fga').text(fga);
+      $('#ptm').text(ptm);
+      $('#pta').text(pta);
+      $('#ptp').text(ptp);
+      $('#ftm').text(ftm);
+     });
+    //  chart.options.data[0].dataPoints[]
+   }
+
+
+
+
+  // chart.options.data[0].dataPoints[3].y = 27
+
 
 
 

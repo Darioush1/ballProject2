@@ -30,8 +30,10 @@
 }
 
 #currentPlayer{
-  margin-left: auto;
-  margin-right:auto;
+  font-family: 'Karla', sans-serif;
+  font-size: 24px;
+  margin-left: 10px;
+  font-weight: bold;
 }
 
 #headerText {
@@ -165,9 +167,12 @@ margin-right: auto;
   margin-right: auto
 }
 
+
+
 .teamSide {
   float: left;
   width: 50%;
+  
 }
 
 #afterSearch{
