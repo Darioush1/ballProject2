@@ -14,7 +14,7 @@
   {{!-- main part of the page --}}
   <div class="container">
     {{!-- this is the opening screen header --}}
-    
+
     <div class='header1'>
       <br>
       <hr>
@@ -63,20 +63,21 @@
 
     {{!-- tab section to help players make informed descisions --}}
     <br>
-    
+
     <div class='playerDataD'>
       <div class='dataPage' id='currentPlayer'></div>
+      
       <button class='dataPage' id='table'>Player</button>
       <button class='dataPage' id='graphButton'>Graph</button>
       <button class='dataPage' id='newsButton'>News</button>
       <button class='dataPage'>Team</button>
+      <button class='dataPage' id='addPlayerB'>Team B</button>
+      <button class='dataPage' id='addPlayerA'>Team A</button>
+      
     </div>
     {{!-- end tab table to help players make informed descisions --}}
 
 
-    {{!-- What goes inside tab/info portion --}}
-
-    {{!-- player tab starts here --}}
 
     <div id='Player' class='dataPageContent'>
 
@@ -96,8 +97,6 @@
             <table class="tablecountries">
               <thead>
                 <tr>
-                  <button id='addPlayerA'>Team A</button>
-                  <button id='addPlayerB'>Team B</button>
                   <th>Player</th>
                   <th>Team</th>
                   <th>GP</th>
@@ -113,13 +112,13 @@
                   <th>PF</th>
                   <th>FGM</th>
                   <th>FGA</th>
-                  <th>FG%</th>
+                  {{!-- <th>FG%</th>
                   <th>3PTM</th>
                   <th>3PTA</th>
-                  <th>3PT%</th>
+                  <th>3PT%</th> --}}
                   <th>FTM</th>
-                  <th>FTA</th>
-                  <th>FT%</th>
+                  {{!-- <th>FTA</th>
+                  <th>FT%</th> --}}
                 </tr>
               </thead>
               <tbody>
@@ -139,10 +138,10 @@
                   <td id='pf'></td>
                   <td id='fgm'></td>
                   <td id='fga'></td>
-                  <td id='fgp'></td>
+                  {{!-- <td id='fgp'></td>
                   <td id='ptm'></td>
                   <td id='pta'></td>
-                  <td id='ptp'></td>
+                  <td id='ptp'></td> --}}
                   <td id='ftm'></td>
                 </tr>
               </tbody>
@@ -159,7 +158,7 @@
     {{!-- Player Graph starts here --}}
 
     <div id='Graph' class='dataPageContent'>
-       <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+      <div id="chartContainer" style="height: 370px; width: 100%;"></div>
     </div>
 
     {{!-- Player Graph ends here --}}
@@ -176,7 +175,7 @@
 
     {{!-- Rank Starts here --}}
 
-    
+
 
     {{!-- Rank Ends Here --}}
 
@@ -213,13 +212,13 @@
                   <th>PF</th>
                   <th>FGM</th>
                   <th>FGA</th>
-                  <th>FG%</th>
+                  {{!-- <th>FG%</th>
                   <th>3PTM</th>
                   <th>3PTA</th>
-                  <th>3PT%</th>
+                  <th>3PT%</th> --}}
                   <th>FTM</th>
-                  <th>FTA</th>
-                  <th>FT%</th>
+                  {{!-- <th>FTA</th>
+                  <th>FT%</th> --}}
                 </tr>
               </thead>
               <tbody>
@@ -244,13 +243,13 @@
                   <td id='pf'>PF</th>
                   <td id='fgm'>FGM</th>
                   <td id='fga'>FGA</th>
-                  <td id='fgp'>FG%</th>
+                  {{!-- <td id='fgp'>FG%</th>
                   <td id='3ptm'>3PTM</th>
                   <td id='3pta'>3PTA</th>
-                  <td id='3ptp'>3PT%</th>
+                  <td id='3ptp'>3PT%</th> --}}
                   <td id='ftm'>FTM</th>
-                  <td id='fta'>FTA</th>
-                  <td id='ftp'>FT%</th>
+                  {{!-- <td id='fta'>FTA</th>
+                  <td id='ftp'>FT%</th> --}}
                   <td></td>
                 </tr>
 
@@ -273,15 +272,16 @@
         Team A
         <div class='playerInfoA'></div>
       </div>
-      <div class='teamSide' id='playerSideA'>
+      <div class='teamSide' id='playerSideB'>
         Team B
         <div class='playerInfoB'></div>
       </div>
     </div>
-
+    <br>
+    <button class='functionButton' id='ballDontLie'>Ball Don't Lie</button>
+    <button class='functionButton' id='runItBack'>Run It Back</button>
   </div>
-  <button class='functionButton' id='ballDontLie'>Ball Don't Lie</button>
-  <button class='functionButton' id='runItBack'>Run It Back</button>
+
 
 </div>
 

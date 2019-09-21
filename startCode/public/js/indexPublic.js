@@ -79,7 +79,7 @@ $('#searchButton2').on('click', function () {
   playerText = $('#playerSelected2').val();
   function splitName() {
     var playerName = playerText;
-    console.log(playername);
+   
     var splitPlayerName = playerName.split(' ');
     console.log(splitPlayerName);
     firstName = splitPlayerName[0];
@@ -95,9 +95,10 @@ $('#searchButton2').on('click', function () {
   }
   getPlayers();
   splitName();
+
   function getPlayers() {
-    var playerName = $('#playerSelected2').val();
-    $.get("/api/search/" + playerName, function (data) {
+   // var playerName = $('#playerSelected2').val();
+    $.get("/api/search/" + playerText, function (data) {
       console.log(data);
       name = data.players;
       team = data.team;
@@ -151,26 +152,10 @@ $('#searchButton').on('click', function () {
   var chosenPlayer = '';
 
   $('#currentPlayer').text(playerText)
-  $('.sideButtonD, .playerDataD, #afterSearch').show();
+  $('.sideButtonD, .playerDataD, .dButton, #afterSearch').show();
   $('.header1').hide();
   getPlayers();
-  function splitName() {
-    var playerName = playerText;
-    console.log(playerName);
-    var splitPlayerName = playerName.split(' ');
-    console.log(splitPlayerName);
-    firstName = splitPlayerName[0];
-    lastName = splitPlayerName[1];
-    var firstNamea = '/' + firstName;
-    var lastNamea = '/' + lastName;
-    console.log(firstNamea);
-    console.log(lastNamea);
-
-    completeName = lastNamea + firstNamea;
-    console.log(completeName);
-
-  }
-  splitName();
+  
 
 
   function getPlayers() {
@@ -225,6 +210,26 @@ $('#searchButton').on('click', function () {
 var playerStats = {};
 
 $('#addPlayerA').on('click', function () {
+  var playerText = '';
+  var completeNameA= '';
+  playerText = $('#players').text();
+  function splitName() {
+    var playerName = playerText;
+    console.log(playerName);
+    var splitPlayerName = playerName.split(' ');
+    console.log(splitPlayerName);
+    firstName = splitPlayerName[0];
+    lastName = splitPlayerName[1];
+    var firstNamea = '/' + firstName;
+    var lastNamea = '/' + lastName;
+    console.log(firstNamea);
+    console.log(lastNamea);
+
+    completeNameA = lastNamea + firstNamea;
+    console.log(completeNameA);
+
+  }
+  splitName();
 
   playerText = $('#players').text();
   playerTeam = $('#team').text();
@@ -263,7 +268,7 @@ $('#addPlayerA').on('click', function () {
   playerStats.ftm = playerFtm;
 
 
-  console.log(playerStats);
+
   $('.playerCardContainer, .functionButton').show();
 
   var playerText = '';
@@ -281,21 +286,21 @@ $('#addPlayerA').on('click', function () {
 
 
   var newPlayerCardA = '<div class="playerCard">' +
-    '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+    '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPicA">' +
     '<div class="imageInfo" id="cardName">' +
     '<hr>' +
     '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team A' + '</span>'
     + '</div>' +
     '</div>'
     ;
-  function getImage() {
-    $('.playerPic').attr('src', 'https://nba-players.herokuapp.com/players' + completeName);
+  function getImageA() {
+    $('.playerPicA').attr('src', 'https://nba-players.herokuapp.com/players' + completeNameA);
 
   };
   addPlayerA(playerText);
   $('.playerInfoA').append(newPlayerCardA)
   $('#cardName').html(playerText);
-  getImage();
+  getImageA();
 
 
 });
@@ -303,6 +308,26 @@ $('#addPlayerA').on('click', function () {
 
 var playerStatsb = {};
 $('#addPlayerB').on('click', function () {
+  var completeNameB = '';
+  var playerText = '';
+  playerText = $('#players').text();
+  function splitName() {
+    var playerName = playerText;
+    console.log(playerName);
+    var splitPlayerName = playerName.split(' ');
+    console.log(splitPlayerName);
+    firstName = splitPlayerName[0];
+    lastName = splitPlayerName[1];
+    var firstNamea = '/' + firstName;
+    var lastNamea = '/' + lastName;
+    console.log(firstNamea);
+    console.log(lastNamea);
+
+    completeNameB = lastNamea + firstNamea;
+    console.log(completeNameB);
+
+  }
+  splitName();
 
   playerText = $('#players').text();
   playerTeam = $('#team').text();
@@ -341,7 +366,7 @@ $('#addPlayerB').on('click', function () {
   playerStatsb.ftm = playerFtm;
 
 
-  console.log(playerStatsb);
+  
   $('.playerCardContainer, .functionButton').show();
 
   var playerText = '';
@@ -356,21 +381,21 @@ $('#addPlayerB').on('click', function () {
   };
 
   var newPlayerCardB = '<div class="playerCard">' +
-    '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+    '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPicB">' +
     '<div class="imageInfo" id="cardName">' +
     '<hr>' +
     '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team B' + '</span>'
     + '</div>' +
     '</div>'
     ;
-  function getImage() {
-    $('.playerPic').attr('src', 'https://nba-players.herokuapp.com/players' + completeName);
+  function getImageB() {
+    $('.playerPicB').attr('src', 'https://nba-players.herokuapp.com/players' + completeNameB);
 
   };
   addPlayerB(playerText);
   $('.playerInfoB').append(newPlayerCardB)
   $('#cardName').html(playerText);
-  getImage();
+  getImageB();
 
 });
 
@@ -493,6 +518,7 @@ $('#ballDontLie').on('click', function () {
     }
 
     if (playerA > playerB) {
+
       console.log(playerStats.players + ' wins with ' + playerA + ' points!');
     } else if (playerA < playerB) {
       console.log(playerStatsb.players + ' wins with ' + playerB + ' points!');
@@ -679,6 +705,27 @@ $('#graphButton').on('click', function () {
   }
   chart()
 });
+
+function clearTable() {
+  $('#players').text('');
+  $('#team').text('');
+  $('#min').text('');
+  $('#ppg').text('');
+  $('#oreb').text('');
+  $('#dreb').text('');
+  $('#reb').text('');
+  $('#ast').text('');
+  $('#stl').text('');
+  $('#blk').text('');
+  $('#to').text('');
+  $('#pf').text('');
+  $('#fgm').text('');
+  $('#fga').text('');
+  $('#ptm').text('');
+  $('#pta').text('');
+  $('#ptp').text('');
+  $('#ftm').text('');
+}
 
 
 
