@@ -55,6 +55,7 @@ $('.dataPage').on('click', function () {
 
 
 $('#searchButton2').on('click', function () {
+  
   var name = '';
   var team = '';
   var gp = 0;
@@ -77,6 +78,7 @@ $('#searchButton2').on('click', function () {
   var ftm = 0;
   var playertext = '';
   playerText = $('#playerSelected2').val();
+  $('#currentPlayer').text(playerText)
   function splitName() {
     var playerName = playerText;
    
@@ -288,7 +290,7 @@ $('#addPlayerA').on('click', function () {
 
   var newPlayerCardA = '<div class="playerCard">' +
     '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPicA">' +
-    '<div class="imageInfo" id="cardName">' +
+    '<div class="imageInfo" id="cardNameA">' +
     '<hr>' +
     '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team A' + '</span>'
     + '</div>' +
@@ -300,7 +302,7 @@ $('#addPlayerA').on('click', function () {
   };
   addPlayerA(playerText);
   $('.playerInfoA').append(newPlayerCardA)
-  $('#cardName').html(playerText);
+  $('#cardNameA').html(playerText);
   getImageA();
 
 
@@ -311,7 +313,7 @@ var playerStatsb = {};
 $('#addPlayerB').on('click', function () {
   var completeNameB = '';
   var playerText = '';
-  playerText = $('#players').text();
+  playerText = $('#playerSelected').text();
   function splitName() {
     var playerName = playerText;
     console.log(playerName);
@@ -383,7 +385,7 @@ $('#addPlayerB').on('click', function () {
 
   var newPlayerCardB = '<div class="playerCard">' +
     '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPicB">' +
-    '<div class="imageInfo" id="cardName">' +
+    '<div class="imageInfo" id="cardNameB">' +
     '<hr>' +
     '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team B' + '</span>'
     + '</div>' +
@@ -395,7 +397,7 @@ $('#addPlayerB').on('click', function () {
   };
   addPlayerB(playerText);
   $('.playerInfoB').append(newPlayerCardB)
-  $('#cardName').html(playerText);
+  $('#cardNameB').html(playerText);
   getImageB();
 
 });
@@ -521,10 +523,16 @@ $('#ballDontLie').on('click', function () {
     if (playerA > playerB) {
 
       console.log(playerStats.players + ' wins with ' + playerA + ' points!');
+      $('.playerInfoB, .playerInfo').remove();
+      $('.playerInfoA').append('<h2>' + 'winner' + '</h2>');
+      
     } else if (playerA < playerB) {
       console.log(playerStatsb.players + ' wins with ' + playerB + ' points!');
+      $('.playerInfoA').remove();
+      $('.playerInfoB').append('<h2>' + 'winner' + '</h2>');
     } else {
       console.log("nobody wins!");
+
     }
 
 

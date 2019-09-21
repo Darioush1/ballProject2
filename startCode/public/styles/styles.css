@@ -3,6 +3,10 @@
   font: #cfc2c2;
 }
 
+img.newsPic{
+  max-width: 1050px;
+}
+
 .row {
   border: #818181 10px;
 }
