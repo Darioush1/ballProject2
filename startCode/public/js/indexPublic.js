@@ -216,10 +216,10 @@ var playerStats = {};
 $('#addPlayerA').on('click', function () {
   var playerText = '';
   var completeNameA= '';
-  playerText = $('#players').text();
+  playerText = $('#playersSelected').text();
   function splitName() {
-    var playerName = playerText;
-    console.log(playerName);
+    var playerName = $('#playersSelected').text();
+    // console.log(playerName);
     var splitPlayerName = playerName.split(' ');
     console.log(splitPlayerName);
     firstName = splitPlayerName[0];
@@ -312,13 +312,13 @@ $('#addPlayerA').on('click', function () {
 
 var playerStatsb = {};
 $('#addPlayerB').on('click', function () {
-  var completeNameB = '';
   var playerText = '';
+  var completeNameB = '';
   playerText = $('#playerSelected').text();
   function splitName() {
-    var playerName = playerText;
-    console.log(playerName);
-    var splitPlayerName = playerName.split(' ');
+    // var playerName = playerText;
+    // console.log(playerName);
+    var splitPlayerName = playerText.split('');
     console.log(splitPlayerName);
     firstName = splitPlayerName[0];
     lastName = splitPlayerName[1];
@@ -533,7 +533,8 @@ $('#ballDontLie').on('click', function () {
       $('.playerInfoB').append('<h2>' + 'winner' + '</h2>');
     } else {
       console.log("nobody wins!");
-
+      $('.playerInfoA').append('<h2>' + 'Are these' + '</h2>');
+      $('.playerInfoB').append('<h2>' + 'the same?' + '</h2>');
     }
 
 
@@ -564,7 +565,7 @@ $('#runItBack').on('click', function () {
   $(tabTextClass).hide();
 })
 
-]
+
 $('#newsButton').on('click', function () {
   var playerText = ''
   playerText = $('#playerSelected').val();
