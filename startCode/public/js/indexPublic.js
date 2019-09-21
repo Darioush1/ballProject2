@@ -303,10 +303,21 @@ function appendRow() {
   $('tbody').append(newRow)
 }
 
+$('#ballDontLie').on('click', function () {
+  console.log('LeBron probably won')
+})
 
-$('#headerText').on('click', function () {
+
+$('#runItBack').on('click', function () {
   $.ajax({
     url: '/api/players/a',
+    type: 'DELETE',
+    success: function (response) {
+      console.log(response)
+    }
+  });
+  $.ajax({
+    url: '/api/players/b',
     type: 'DELETE',
     success: function (response) {
       console.log(response)

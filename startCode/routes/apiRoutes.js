@@ -138,7 +138,7 @@ module.exports = function(app) {
   });
 
   app.delete("/api/players/b", function(req, res) {
-    db.TeamB.destroy({ where: {} } }).then(function(dbTeamB) {
+    db.TeamB.destroy({ where: {}  }).then(function(dbTeamB) {
       res.json(dbTeamB);
     });
   });
