@@ -2,13 +2,13 @@
   "development": {
     "username": "root",
     "database": "nba_stats",
-    "password": "TacoB3ll1?",
+    "password": "RIPsonics9596",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "TacoB3ll1?",
+    "password": "RIPsonics9596",
     "database": "nba_stats",
     "host": "localhost",
     "dialect": "mysql",

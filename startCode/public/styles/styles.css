@@ -22,8 +22,17 @@
   font-family: 'Saira Stencil One', cursive;
 }
 
+#headerTextAfterSearch {
+  font-family: 'Saira Stencil One', cursive;
+}
+
+
+
 .headerRow{
+  
+  font-family: 'Saira Stencil One', cursive;
   background-clip: #818181;
+
 }
 
 .dSideBar {
@@ -68,10 +77,10 @@
 
 
 
-.sideButtonD{
+#sideButtonD{
   background-color: aqua;
   border: 0px;
-  padding: 10px
+  padding: 10px;
 }
 
 .playerDataD{
@@ -137,4 +146,8 @@ margin-right: auto;
   width: 50%;
 }
 
+#afterSearch{
+  background-color: #818181;
+  
+}
 

@@ -13,7 +13,7 @@ var teamBArray = [];
 var tabTextClass = '';
 
 $(document).ready(function () {
-  $('.sideButtonD, .dataPageContent, .playerDataD, #afterSearch').hide();
+  $('#sideButtonD, .dataPageContent, .playerDataD, #afterSearch, .functionButton, .playerCardContainer').hide();
 
 });
 
@@ -38,8 +38,6 @@ $('.closeBar').on('click', function () {
 });
 //End Side Bar Functions
 
-
-
 //function that switches between tabs
 $('.dataPage').on('click', function () {
 
@@ -52,39 +50,7 @@ $('.dataPage').on('click', function () {
 });
 
 
-var colors = ['#007bff', '#28a745', '#444444', '#c3e6cb', '#dc3545', '#6c757d'];
-var chBar = $("chBar");
-var chartData = {
-  labels: ["Player", "Team", "GP", "Min", "PPG",
-    "Orb", "Dreb", "Reb", "Ast", "Stl", "Blk", "TO", "PF", "FGM", "FGA", "3PTM", "3PTA", "FTM", "FTA"],
-  datasets: [{
-    data: [name, team, gp, min, ppg, oreb, dreb, reb, ast, stl, blk, to, pf, fgm, fgp, ptm, pta, ptp, ftm],
-    backgroundColor: colors[0]
-  }]
-};
 
-if (chBar) {
-  new Chart(chBar, {
-    type: "bar",
-    data: chartData,
-    options: {
-      scales: {
-        xAxes: [{
-          barPercentage: 0.4,
-          categoryPercentage: 0.5
-        }],
-        yAxes: [{
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      },
-      legend: {
-        display: false
-      }
-    }
-  });
-};
 
 $('#searchButton2').on('click', function () {
   var name = '';
@@ -154,7 +120,10 @@ $('#searchButton2').on('click', function () {
       $('#ftm').text(ftm);
 
     });
+
   }
+  
+  
 });
 
 $('#searchButton').on('click', function () {
@@ -162,10 +131,11 @@ $('#searchButton').on('click', function () {
   playerText = $('#playerSelected').val();
   var chosenPlayer = '';
 
-
+  $('#currentPlayer').text(playerText)
   $('.sideButtonD, .playerDataD, #afterSearch').show();
   $('.header1').hide();
   getPlayers();
+ 
 
   function getPlayers() {
     var playerName = $('#playerSelected').val();
@@ -259,7 +229,9 @@ $('#addPlayerA').on('click', function () {
 
   console.log(playerStats);
 
-  
+  $('.playerCardContainer, .functionButton').show();
+  var playerText = '';
+  playerText = $('#players').text();
   function addPlayerA(data) {
 
     $.post("/api/search/a/" + data, function () {
@@ -280,6 +252,7 @@ $('#addPlayerA').on('click', function () {
   addPlayerA(playerText);
   $('.playerInfoA').append(newPlayerCardA)
   $('#cardName').html(playerText);
+  
 
 });
 
@@ -325,6 +298,10 @@ $('#addPlayerB').on('click', function () {
 
 
   console.log(playerStatsb);
+  $('.playerCardContainer, .functionButton').show();
+
+  var playerText = '';
+  playerText = $('#players').text();
   function addPlayerB(data) {
 
     $.post("/api/search/b/" + data, function () {
@@ -514,4 +491,251 @@ $('#runItBack').on('click', function () {
     }
   });
 })
+
+$('#newsButton').on('click', function () {
+
+  
+  var playerText = '';
+  playerText = $('#currentPlayer').html();
+  var newsBox = $(`<div class=${playerText}></div>`);
+  var newsUrl = 'https://newsapi.org/v2/top-headlines?' +
+    'q=' + playerText + '&'  +
+    'apiKey=c7408b3a1a23452fb9fb13a17f56df75';
+    console.log(newsUrl)
+
+  $.ajax({
+    url: newsUrl,
+    method: "GET",
+    error: function () {
+      console.log("You done messed up A-A-Ron");
+    }
+  }).done(function (response) {
+
+    console.log(response);
+    newsBox.html('');
+    $.each(response.articles, function (index, element) {
+      console.log('each function called')
+      var author = response.articles.author;
+      var authorElement = element.author[i]
+      var li = '<li><h3><a href="' + element.url + '" target="_blank">' + element.title + '</a></h3><span class="date">' + authorElement + '</span><span class="author">' + author + '</span><p>' + element.description + '</p><img src="' + element.urlToImage + '" /></li>'
+      newsBox.append(li);
+      $('#news-section').append(newsBox);
+      $('#news-section').append('<div>' + 'hello' + '</div>');
+    });
+
+  });
+});
+
+$('#graphButton').on('click', function () {
+  function getPlayers() {
+    var playerName = $('#playerSelected').val();
+    $.get("/api/search/" + playerName, function (data) {
+      createPlayerRow
+      console.log(data);
+      name = data.players;
+      team = data.team;
+      gp = data.gp;
+      min = data.min;
+      ppg = data.ppg;
+      oreb = data.oreb;
+      dreb = data.dreb;
+      reb = data.reb;
+      ast = data.ast;
+      stl = data.stl;
+      blk = data.blk;
+      to = data.to;
+      pf = data.pf;
+      fga = data.fga;
+      fgm = data.fgm;
+      fgp = data.fgp;
+      ptm = data.ptm;
+      pta = data.pta;
+      ptp = data.ptp;
+      ftm = data.ftm;
+      $('#players').text(name);
+      $('#team').text(team);
+      $('#min').text(min);
+      $('#ppg').text(ppg);
+      $('#oreb').text(oreb);
+      $('#dreb').text(dreb);
+      $('#reb').text(reb);
+      $('#ast').text(ast);
+      $('#stl').text(stl);
+      $('#blk').text(blk);
+      $('#to').text(to);
+      $('#pf').text(pf);
+      $('#fgm').text(fgm);
+      $('#fga').text(fga);
+      $('#ptm').text(ptm);
+      $('#pta').text(pta);
+      $('#ptp').text(ptp);
+      $('#ftm').text(ftm);
+
+    });
+
+  }
+  console.log(playerText);
+
+  function chart() {
+    getPlayers()
+    
+    console.log('graph opened');
+    var chart = new CanvasJS.Chart("chartContainer", {
+      theme: "light2",
+      animationEnabled: true,
+      title: {
+        text: ""
+      },
+      
+      toolTip: {
+        shared: "true"
+      },
+      legend: {
+        cursor: "pointer",
+        itemclick: toggleDataSeries
+      },
+      data: [{
+        type: "spline",
+        visible: false,
+        showInLegend: true,
+        yValueFormatString: "##.00mn",
+        name: "Season 1",
+        dataPoints: [
+          { label: "Ep. 1", y: 2.22 },
+          { label: "Ep. 2", y: 2.20 },
+          { label: "Ep. 3", y: 2.44 },
+          { label: "Ep. 4", y: 2.45 },
+          { label: "Ep. 5", y: 2.58 },
+          { label: "Ep. 6", y: 2.44 },
+          { label: "Ep. 7", y: 2.40 },
+          { label: "Ep. 8", y: 2.72 },
+          { label: "Ep. 9", y: 2.66 },
+          { label: "Ep. 10", y: 3.04 }
+        ]
+      },
+      {
+        type: "spline",
+        showInLegend: true,
+        visible: false,
+        yValueFormatString: "##.00mn",
+        name: "Season 2",
+        dataPoints: [
+          { label: "Ep. 1", y: 3.86 },
+          { label: "Ep. 2", y: 3.76 },
+          { label: "Ep. 3", y: 3.77 },
+          { label: "Ep. 4", y: 3.65 },
+          { label: "Ep. 5", y: 3.90 },
+          { label: "Ep. 6", y: 3.88 },
+          { label: "Ep. 7", y: 3.69 },
+          { label: "Ep. 8", y: 3.86 },
+          { label: "Ep. 9", y: 3.38 },
+          { label: "Ep. 10", y: 4.20 }
+        ]
+      },
+      {
+        type: "spline",
+        visible: false,
+        showInLegend: true,
+        yValueFormatString: "##.00mn",
+        name: "Season 3",
+        dataPoints: [
+          { label: "Ep. 1", y: 4.37 },
+          { label: "Ep. 2", y: 4.27 },
+          { label: "Ep. 3", y: 4.72 },
+          { label: "Ep. 4", y: 4.87 },
+          { label: "Ep. 5", y: 5.35 },
+          { label: "Ep. 6", y: 5.50 },
+          { label: "Ep. 7", y: 4.84 },
+          { label: "Ep. 8", y: 4.13 },
+          { label: "Ep. 9", y: 5.22 },
+          { label: "Ep. 10", y: 5.39 }
+        ]
+      },
+      {
+        type: "spline",
+        showInLegend: true,
+        yValueFormatString: "##.00mn",
+        name: "Season 4",
+        dataPoints: [
+          { label: "Ep. 1", y: 6.64 },
+          { label: "Ep. 2", y: 6.31 },
+          { label: "Ep. 3", y: 6.59 },
+          { label: "Ep. 4", y: 6.95 },
+          { label: "Ep. 5", y: 7.16 },
+          { label: "Ep. 6", y: 6.40 },
+          { label: "Ep. 7", y: 7.20 },
+          { label: "Ep. 8", y: 7.17 },
+          { label: "Ep. 9", y: 6.95 },
+          { label: "Ep. 10", y: 7.09 }
+        ]
+      },
+      {
+        type: "spline",
+        showInLegend: true,
+        yValueFormatString: "##.00mn",
+        name: "Season 5",
+        dataPoints: [
+          { label: "Ep. 1", y: 8 },
+          { label: "Ep. 2", y: 6.81 },
+          { label: "Ep. 3", y: 6.71 },
+          { label: "Ep. 4", y: 6.82 },
+          { label: "Ep. 5", y: 6.56 },
+          { label: "Ep. 6", y: 6.24 },
+          { label: "Ep. 7", y: 5.40 },
+          { label: "Ep. 8", y: 7.01 },
+          { label: "Ep. 9", y: 7.14 },
+          { label: "Ep. 10", y: 8.11 }
+        ]
+      },
+      {
+        type: "spline",
+        showInLegend: true,
+        yValueFormatString: "##.00mn",
+        name: "Season 6",
+        dataPoints: [
+          { label: "Ep. 1", y: 7.94 },
+          { label: "Ep. 2", y: 7.29 },
+          { label: "Ep. 3", y: 7.28 },
+          { label: "Ep. 4", y: 7.82 },
+          { label: "Ep. 5", y: 7.89 },
+          { label: "Ep. 6", y: 6.71 },
+          { label: "Ep. 7", y: 7.80 },
+          { label: "Ep. 8", y: 7.60 },
+          { label: "Ep. 9", y: 7.66 },
+          { label: "Ep. 10", y: 8.89 }
+        ]
+      },
+      {
+        type: "spline",
+        showInLegend: true,
+        yValueFormatString: "##.00mn",
+        name: "Season 7",
+        dataPoints: [
+          { label: "Ep. 1", y: 10.11 },
+          { label: "Ep. 2", y: 9.27 },
+          { label: "Ep. 3", y: 9.25 },
+          { label: "Ep. 4", y: 10.17 },
+          { label: "Ep. 5", y: 10.72 },
+          { label: "Ep. 6", y: 10.24 },
+          { label: "Ep. 7", y: 12.07 }
+        ]
+      }]
+    });
+    chart.render();
+
+    function toggleDataSeries(e) {
+      if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+      } else {
+        e.dataSeries.visible = true;
+      }
+      chart.render();
+    
+
+  }
+}
+chart()
+});
+
+
 
