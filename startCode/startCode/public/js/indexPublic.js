@@ -1,5 +1,4 @@
 // Get references to page elements
-
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
@@ -516,8 +515,3 @@ $('#runItBack').on('click', function () {
   });
 })
 
-
-// let teamRecordRequest = playByPlay.getTeamRecord("Warriors", "2018-19", "Regular+Season");
-// teamRecordRequest.then(record => {
-//     console.log(record);
-// });

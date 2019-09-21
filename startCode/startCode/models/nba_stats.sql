@@ -24,19 +24,13 @@ USE `nba_stats`;
 DROP TABLE IF EXISTS `nbastats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-<<<<<<< HEAD
-CREATE TABLE `Nbastats` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Players` varchar(25) DEFAULT NULL,
-=======
 CREATE TABLE `nbastats` (
   `nbastats_id` int(11) NOT NULL AUTO_INCREMENT,
   `Player` varchar(25) DEFAULT NULL,
->>>>>>> 8e77072d70babd4d32645b89c7f785117c4c102e
   `Year` varchar(12) DEFAULT NULL,
   `Season` varchar(5) DEFAULT NULL,
   `Team` varchar(45) DEFAULT NULL,
-  `GP` int(11) NOT NULL,
+  `GP` int(11) DEFAULT NULL,
   `Min` decimal(12,2) DEFAULT NULL,
   `PPG` decimal(12,2) DEFAULT NULL,
   `Oreb` decimal(12,2) DEFAULT NULL,
@@ -56,11 +50,7 @@ CREATE TABLE `nbastats` (
   `FTM` decimal(12,2) DEFAULT NULL,
   `FTA` decimal(12,2) DEFAULT NULL,
   `FT%` decimal(12,3) DEFAULT NULL,
-<<<<<<< HEAD
-  PRIMARY KEY (`id`),
-=======
   PRIMARY KEY (`nbastats_id`),
->>>>>>> 8e77072d70babd4d32645b89c7f785117c4c102e
   KEY `GP_index` (`GP`)
 ) ENGINE=InnoDB AUTO_INCREMENT=531 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

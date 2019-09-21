@@ -3,23 +3,10 @@
 var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
-var playByPlay = require('nba-play-by-play');
 var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
-
-
-// Allows processing of game records
-
-// let teamRecordRequest = playByPlay.getTeamRecord("Warriors", "2018-19", "Regular+Season");
-// teamRecordRequest.then(record => {
-//     console.log(record);
-// });
-
-console.log(playByPlay.getTeamId("Warriors"));
-console.log(playByPlay.getTeamId("GSW"));
-
 
 
 if (config.use_env_variable) {
@@ -43,7 +30,7 @@ fs.readdirSync(__dirname)
     var model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
     sequelize.query('select * from nbastats').then(function(rows) {
-  //console.log(JSON.stringify(rows));
+  console.log(JSON.stringify(rows));
 });
   });
 
