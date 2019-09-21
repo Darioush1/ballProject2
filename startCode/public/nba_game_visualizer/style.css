@@ -1,0 +1,165 @@
+
+*,body,html{
+	margin:0px;
+	padding:0px;
+	background-color: black;
+}
+svg text{
+	font-size: small;
+}
+
+.play_by_play{
+	color: gray;
+	font-size: small;
+}
+.play_by_play_holder{
+	margin: 10px;
+}
+.score{
+	font-weight: normal;
+}
+.scoring_play{
+	color: yellow;
+}
+
+.play_by_play_date{
+	color: #666;
+}
+
+
+.visitor, .home{
+	float:left;
+	margin: 10px;
+	background-color: black;
+	color: white;
+}
+
+.main{
+	margin:0px auto;
+	width: 700px;
+}
+.header{
+	color: white;
+/*	font-weight: bold;*/
+	font-size: large;
+	float: left;
+	width: 200px;
+}
+
+ul{
+	list-style-type: none;
+}
+
+.home{
+	color: #aaa;
+}
+
+.visitor{
+	color: #aaa;
+}
+.position{
+	color: yellow;
+}
+#speed_slider_holder{
+    width: 200px;
+    float: left;
+    margin-left: 5px;
+}
+#speed_slider_holder div{
+	color: white;
+    float: left;
+    margin-left: 10px;
+}
+#speed_slider{
+    width: 100px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#event_slider_holder{
+    width: 300px;
+    float: left;
+    margin-left: 5px;
+    height: 30px;
+}
+#event_slider_holder div{
+	color: #666;
+    float: left;
+}
+#event_slider{
+    width: 200px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+#event_slider div{
+}
+
+
+svg{
+	border: dotted 5px white;
+	margin: 5px 0px;
+}
+.bottom{
+	float: left;
+}
+.top{/*
+	width:650px;*/
+}
+svg
+{
+	background-image: url('court_hard.png');
+    background-size: 100% 100%;
+    
+}
+.scoreboard{
+	font-size:large;
+/*	float:left;*/
+	width: 650px;
+    background-color: black;
+}
+
+.scoreboard li{
+    display: inline;
+    margin-right: 10px;
+	color: #666;
+}
+.scoreboard .scores li{
+	font-weight: bold;
+	color: white;
+}
+
+.scoreboard .title{
+	color: #aaa;
+
+}
+.pause{
+	float:left;
+}
+.jump_event{
+	width:200px;
+	float:left;
+}
+.dropdown{
+	width: 180px;
+	float:left;
+}
+.dropdown-menu li{
+	background-color: white;
+	padding: 0px 10px;
+}
+
+.gameinfo{
+	color: #DCC098;
+	font-size:large;
+	font-weight: bold;
+	padding: 0px 10px;
+	width: 230px;
+	float: left;
+}
+
+.date {
+	font-weight: normal;
+	font-size: small;
+}

@@ -1,0 +1,21 @@
+{
+  "development": {
+    "username": "root",
+    "database": "nba_stats",
+    "password": "TacoB3ll1?",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "TacoB3ll1?",
+    "database": "nba_stats",
+    "host": "localhost",
+    "dialect": "mysql",
+    "logging": false
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
+  }
+}

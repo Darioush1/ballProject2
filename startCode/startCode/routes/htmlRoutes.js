@@ -1,6 +1,4 @@
 var db = require("../models/example.js");
-var path = require("path");
-
 
 module.exports = function(app) {
   // Load index page
@@ -21,10 +19,6 @@ module.exports = function(app) {
         example: dbExample
       });
     });
-  });
-
-  app.get("/watch", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/nba_game_visualizer/index.html"));
   });
 
   // Render 404 page for any unmatched routes

@@ -1,4 +1,5 @@
 // Get references to page elements
+
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
@@ -563,6 +564,7 @@ $('#runItBack').on('click', function () {
   $(tabTextClass).hide();
 })
 
+]
 $('#newsButton').on('click', function () {
   var playerText = ''
   playerText = $('#playerSelected').val();

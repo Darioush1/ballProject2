@@ -1,17 +1,8 @@
 var db = require("../models");
-// var playByPlay = require('nba-play-by-play');
-
 
 
 module.exports = function(app) {
   // Get all examples
-
-  // app.get("/api/pbp"), function(req, res) {
-  //   let teamRecordRequest = playByPlay.getTeamRecord("Warriors", "2018-19", "Regular+Season");
-  //     teamRecordRequest.then(record => {
-  // console.log(record)
-  //   });
-  // };
 
   app.get("/api/players", function(req, res) {
     db.Nbastat.findAll({ 
