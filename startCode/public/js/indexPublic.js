@@ -6,7 +6,8 @@ var $exampleList = $("#example-list");
 //var playerText = '';
 var playerData;
 
-
+var teamAArray = [];
+var teamBArray = [];
 
 
 var tabTextClass = '';
@@ -127,6 +128,7 @@ $('#searchButton2').on('click', function () {
       to = data.to;
       pf = data.pf;
       fgm = data.fgm;
+      fga = data.fga;
       fgp = data.fgp;
       ptm = data.ptm;
       pta = data.pta;
@@ -183,6 +185,7 @@ $('#searchButton').on('click', function () {
       blk = data.blk;
       to = data.to;
       pf = data.pf;
+      fga = data.fga;
       fgm = data.fgm;
       fgp = data.fgp;
       ptm = data.ptm;
@@ -213,10 +216,50 @@ $('#searchButton').on('click', function () {
   }
 });
 
+var playerStats = {};
+
 $('#addPlayerA').on('click', function () {
 
-  var playerText = '';
   playerText = $('#players').text();
+  playerTeam = $('#team').text();
+  playerMin = $('#min').text();
+  playerPPG = $('#ppg').text();
+  playerOreb = $('#oreb').text();
+  playerDreb = $('#dreb').text();
+  playerReb = $('#reb').text();
+  playerAst = $('#ast').text();
+  playerStl =  $('#stl').text();
+  playerBlk = $('#blk').text();
+  playerTo = $('#to').text();
+  playerPf = $('#pf').text();
+  playerFgm =  $('#fgm').text();
+  playerFga = $('#fga').text();
+  playerPtm =  $('#ptm').text();
+  playerPta =  $('#pta').text();
+  playerPtp = $('#ptp').text();
+  playerFtm = $('#ftm').text();
+  playerStats.players = playerText;
+  playerStats.team = playerTeam;
+  playerStats.min = playerMin;
+  playerStats.ppg = playerPPG;
+  playerStats.orb = playerOreb;
+  playerStats.dreb = playerDreb;
+  playerStats.reb = playerReb;
+  playerStats.ast = playerAst;
+  playerStats.stl = playerStl;
+  playerStats.blk = playerBlk;
+  playerStats.to = playerTo;
+  playerStats.pf = playerPf;
+  playerStats.fgm = playerFgm;
+  playerStats.ptm = playerPtm;
+  playerStats.pta = playerPta;
+  playerStats.ptp = playerPtp;
+  playerStats.ftm = playerFtm;
+
+
+  console.log(playerStats);
+
+  
   function addPlayerA(data) {
 
     $.post("/api/search/a/" + data, function () {
@@ -241,29 +284,69 @@ $('#addPlayerA').on('click', function () {
 });
 
 
-
+var playerStatsb = {};
 $('#addPlayerB').on('click', function () {
-  var newPlayerCardB = '<div class="playerCard">' +
-    '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-    '<div class="imageInfo" id = "players">' + +
-    '<hr>' +
-    '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team B' + '</span>'
-    + '</div>' +
-    '</div>';
-  var playerText = '';
-  playerText = $('#players').text(name);
+
+  playerText = $('#players').text();
+  playerTeam = $('#team').text();
+  playerMin = $('#min').text();
+  playerPPG = $('#ppg').text();
+  playerOreb = $('#oreb').text();
+  playerDreb = $('#dreb').text();
+  playerReb = $('#reb').text();
+  playerAst = $('#ast').text();
+  playerStl =  $('#stl').text();
+  playerBlk = $('#blk').text();
+  playerTo = $('#to').text();
+  playerPf = $('#pf').text();
+  playerFgm =  $('#fgm').text();
+  playerFga = $('#fga').text();
+  playerPtm =  $('#ptm').text();
+  playerPta =  $('#pta').text();
+  playerPtp = $('#ptp').text();
+  playerFtm = $('#ftm').text();
+  playerStatsb.players = playerText;
+  playerStatsb.team = playerTeam;
+  playerStatsb.min = playerMin;
+  playerStatsb.ppg = playerPPG;
+  playerStatsb.orb = playerOreb;
+  playerStatsb.dreb = playerDreb;
+  playerStatsb.reb = playerReb;
+  playerStatsb.ast = playerAst;
+  playerStatsb.stl = playerStl;
+  playerStatsb.blk = playerBlk;
+  playerStatsb.to = playerTo;
+  playerStatsb.pf = playerPf;
+  playerStatsb.fgm = playerFgm;
+  playerStatsb.ptm = playerPtm;
+  playerStatsb.pta = playerPta;
+  playerStatsb.ptp = playerPtp;
+  playerStatsb.ftm = playerFtm;
+
+
+  console.log(playerStatsb);
   function addPlayerB(data) {
 
-    console.log(data)
     $.post("/api/search/b/" + data, function () {
 
     }).then(
-      "INSERT data INTO teamas"
+      "INSERT data INTO teambs"
     )
   };
 
+  var newPlayerCardB = '<div class="playerCard">' +
+    '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
+    '<div class="imageInfo" id="cardName">' +
+    '<hr>' +
+    '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team B' + '</span>'
+    + '</div>' +
+      console.log(teamAArray)
+      '</div>'
+    ;
   addPlayerB(playerText);
   $('.playerInfoB').append(newPlayerCardB)
+  $('#cardName').html(playerText);
+
 });
 
 
@@ -304,7 +387,114 @@ function appendRow() {
 }
 
 $('#ballDontLie').on('click', function () {
-  console.log('LeBron probably won')
+  console.log(playerStats, playerStatsb)
+
+  function bdl() {
+    var playerA = 0;
+    var playerB = 0;
+
+    if (playerStats.ppg > playerStatsb.ppg) {
+      console.log("no")
+      playerA = playerA+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+
+    } else if (playerStats.ppg < playerStatsb.ppg) {
+      playerB = playerB+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    } else {
+      playerA;
+      playerB;
+      console.log(playerA, playerB);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    }
+
+    if (playerStats.ast > playerStatsb.ast) {
+      console.log("no")
+      playerA = playerA+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+
+    } else if (playerStats.ast < playerStatsb.ast) {
+      playerB = playerB+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    } else {
+      playerA;
+      playerB;
+      console.log(playerA, playerB);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    }
+
+    if (playerStats.reb > playerStatsb.reb) {
+      console.log("no")
+      playerA = playerA+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+
+    } else if (playerStats.reb < playerStatsb.reb) {
+      playerB = playerB+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    } else {
+      playerA;
+      playerB;
+      console.log(playerA, playerB);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    }
+
+    if (playerStats.blk > playerStatsb.blk) {
+      console.log("no")
+      playerA = playerA+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+
+    } else if (playerStats.blk < playerStatsb.blk) {
+      playerB = playerB+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    } else {
+      playerA;
+      playerB;
+      console.log(playerA, playerB);
+      console.log('playerA has ' + playerA +  'points', 'playerB has ' + playerB + ' points');
+    }
+
+    if (playerStats.stl > playerStatsb.stl) {
+      console.log("no")
+      playerA = playerA+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+
+    } else if (playerStats.stl < playerStatsb.stl) {
+      playerB = playerB+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    } else {
+      playerA;
+      playerB;
+      console.log(playerA, playerB);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    }
+
+    if (playerStats.to < playerStatsb.to) {
+      console.log("no")
+      playerA = playerA+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+
+    } else if (playerStats.to > playerStatsb.to) {
+      playerB = playerB+Number(1);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    } else {
+      playerA;
+      playerB;
+      console.log(playerA, playerB);
+      console.log('playerA has ' + playerA +  ' points, ', 'playerB has ' + playerB + ' points');
+    }
+
+    if (playerA > playerB) {
+      console.log(playerStats.players + ' wins with ' + playerA + ' points!');
+    } else if (playerA < playerB) {
+      console.log(playerStatsb.players + ' wins with ' + playerB + ' points!');
+    } else {
+      console.log("nobody wins!");
+    }
+
+
+  }
+  bdl();
+
 })
 
 
@@ -324,3 +514,4 @@ $('#runItBack').on('click', function () {
     }
   });
 })
+
