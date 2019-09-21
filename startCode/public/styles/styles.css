@@ -17,6 +17,15 @@
 
 }
 
+
+#headerText {
+  font-family: 'Saira Stencil One', cursive;
+}
+
+.headerRow{
+  background-clip: #818181;
+}
+
 .dSideBar {
   height: 100%;
   width : 0;
@@ -28,6 +37,7 @@
   overflow-x: hidden;
   padding-top: 60px;
   transition: 0.5s;
+  font-family: 'Karla', sans-serif;
 }
 
 .dSideBar a {
@@ -56,6 +66,8 @@
   .dSideBar a {font-size: 18px;}
 }
 
+
+
 .sideButtonD{
   background-color: aqua;
   border: 0px;
@@ -76,6 +88,8 @@ outline: none;
 cursor: pointer;
 padding: 14px 16px;
 transition: 0.3s;
+margin-left: auto;
+margin-right: auto;
 }
 
 .playerDataD button:hover{
@@ -96,21 +110,31 @@ transition: 0.3s;
 .playerCard {
   position: relative;
   width: 50%;
-  max-width: 300px;
+  max-width: 300px
 }
 
-/* .playerPic{
+.playerPic{
   display: block;
   width: 100%;
   height:auto;
-} */
+}
 
 .imageInfo {
   position: absolute;
+  background-color: #818181;
   bottom: 0;
   width: 100%;
   color: white;
   font-size: 20px;
-  padding:20px;
+  padding:10px;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto
 }
+
+.teamSide {
+  float: left;
+  width: 50%;
+}
+
+

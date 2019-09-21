@@ -30,7 +30,7 @@ CREATE TABLE `nbastats` (
   `Year` varchar(12) DEFAULT NULL,
   `Season` varchar(5) DEFAULT NULL,
   `Team` varchar(45) DEFAULT NULL,
-  `GP` int(11) NOT NULL,
+  `GP` int(11) DEFAULT NULL,
   `Min` decimal(12,2) DEFAULT NULL,
   `PPG` decimal(12,2) DEFAULT NULL,
   `Oreb` decimal(12,2) DEFAULT NULL,
