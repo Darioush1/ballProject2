@@ -11,15 +11,18 @@
   },
   "license": "ISC",
   "dependencies": {
+    "canvas": "^2.6.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.0",
     "express-handlebars": "^3.1.0",
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
+    "sequelize": "^5.19.0"
     "nba-play-by-play": "^1.0.0",
     "nba-stats-client": "^1.0.0",
     "nba.js": "^0.6.1",
-    "sequelize": "^5.8.6"
+     "sequelize": "^5.19.0"
+
   },
   "devDependencies": {
     "chai": "^4.2.0",

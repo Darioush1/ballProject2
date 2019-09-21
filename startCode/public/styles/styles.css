@@ -3,6 +3,10 @@
   font: #cfc2c2;
 }
 
+img.newsPic{
+  max-width: 1050px;
+}
+
 .row {
   border: #818181 10px;
 }
@@ -16,14 +20,44 @@
   padding: 20px;
 
 }
+#addPlayerB {
+  float: right;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
+
+#addPlayerA {
+  float: right;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#currentPlayer{
+  font-family: 'Karla', sans-serif;
+  font-size: 24px;
+  margin-left: 10px;
+  font-weight: bold;
+}
 
 #headerText {
   font-family: 'Saira Stencil One', cursive;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 86px;
 }
 
+#headerTextAfterSearch {
+  font-family: 'Saira Stencil One', cursive;
+}
+
+
+
 .headerRow{
+  
+  font-family: 'Saira Stencil One', cursive;
   background-clip: #818181;
+
 }
 
 .dSideBar {
@@ -68,10 +102,10 @@
 
 
 
-.sideButtonD{
+#sideButtonD{
   background-color: aqua;
   border: 0px;
-  padding: 10px
+  padding: 10px;
 }
 
 .playerDataD{
@@ -113,7 +147,12 @@ margin-right: auto;
   max-width: 300px
 }
 
-.playerPic{
+.playerPicA{
+  display: block;
+  width: 100%;
+  height:auto;
+}
+.playerPicB{
   display: block;
   width: 100%;
   height:auto;
@@ -132,9 +171,16 @@ margin-right: auto;
   margin-right: auto
 }
 
+
+
 .teamSide {
   float: left;
   width: 50%;
+  
 }
 
+#afterSearch{
+  background-color: #818181;
+  
+}
 
