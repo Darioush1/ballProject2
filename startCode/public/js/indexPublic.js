@@ -3,7 +3,7 @@ var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
-//var playerText = '';
+var playerText = '';
 var playerData;
 var firstName = '';
 var lastName = '';
@@ -77,6 +77,22 @@ $('#searchButton2').on('click', function () {
   var ftm = 0;
   var playertext = '';
   playerText = $('#playerSelected2').val();
+  function splitName() {
+    var playerName = playerText;
+    console.log(playername);
+    var splitPlayerName = playerName.split(' ');
+    console.log(splitPlayerName);
+    firstName = splitPlayerName[0];
+    lastName = splitPlayerName[1];
+    var firstNamea = '/' + firstName;
+    var lastNamea = '/' + lastName;
+    console.log(firstNamea);
+    console.log(lastNamea);
+
+    completeName = lastNamea + firstNamea;
+    console.log(completeName);
+
+  }
   getPlayers();
   splitName();
   function getPlayers() {
@@ -138,6 +154,22 @@ $('#searchButton').on('click', function () {
   $('.sideButtonD, .playerDataD, #afterSearch').show();
   $('.header1').hide();
   getPlayers();
+  function splitName() {
+    var playerName = playerText;
+    console.log(playerName);
+    var splitPlayerName = playerName.split(' ');
+    console.log(splitPlayerName);
+    firstName = splitPlayerName[0];
+    lastName = splitPlayerName[1];
+    var firstNamea = '/' + firstName;
+    var lastNamea = '/' + lastName;
+    console.log(firstNamea);
+    console.log(lastNamea);
+
+    completeName = lastNamea + firstNamea;
+    console.log(completeName);
+
+  }
   splitName();
 
 
@@ -232,8 +264,8 @@ $('#addPlayerA').on('click', function () {
 
 
   console.log(playerStats);
-
   $('.playerCardContainer, .functionButton').show();
+
   var playerText = '';
   playerText = $('#players').text();
   function addPlayerA(data) {
@@ -246,7 +278,7 @@ $('#addPlayerA').on('click', function () {
   };
 
   ;
-       
+
 
   var newPlayerCardA = '<div class="playerCard">' +
     '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
@@ -256,13 +288,14 @@ $('#addPlayerA').on('click', function () {
     + '</div>' +
     '</div>'
     ;
-function getImage () {
+  function getImage() {
     $('.playerPic').attr('src', 'https://nba-players.herokuapp.com/players' + completeName);
-    
-};
+
+  };
   addPlayerA(playerText);
   $('.playerInfoA').append(newPlayerCardA)
   $('#cardName').html(playerText);
+  getImage();
 
 
 });
@@ -328,12 +361,16 @@ $('#addPlayerB').on('click', function () {
     '<hr>' +
     '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team B' + '</span>'
     + '</div>' +
-    console.log(teamAArray)
-  '</div>'
+    '</div>'
     ;
+  function getImage() {
+    $('.playerPic').attr('src', 'https://nba-players.herokuapp.com/players' + completeName);
+
+  };
   addPlayerB(playerText);
   $('.playerInfoB').append(newPlayerCardB)
   $('#cardName').html(playerText);
+  getImage();
 
 });
 
@@ -351,22 +388,6 @@ function createPlayerRow(data) {
 }
 
 
-// var newPlayerCardA = '<div class="playerCard">' +
-//   '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-//   '<div class="imageInfo" id="name">' + name +
-//   '<hr>' +
-//   '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team A' + '</span>'
-//   + '</div>' +
-//   '</div>'
-//   ;
-
-//   var newPlayerCardB = '<div class="playerCard">' +
-//   '<img src="sampleImages/lbjSample.jpg" alt="Avatar" class="playerPic">' +
-//   '<div class="imageInfo" id = "name">' + name +
-//   '<hr>' +
-//   '<span class="playerInfo" id="cost">' + '$0' + '</span>' + '<span class="playerInfo" id="realFrom">' + 'Team B' + '</span>'
-//   + '</div>' +
-//   '</div>';
 
 var newRow = "<tr>" + "<td id='players'>" + "</td>" + "<td id='team'>" + "</td>" + "<td id='gp'>" + "</td>" + "<td id='min'>" + "</td>" + "<td id='ppg'>" + "</td>" + "<td id='oreb'>" + "</td>" + "<td id='dreb'>" + "</td>" + "<td id='reb'>" + "</td>" + "<td id='ast'>" + "</td>" + "<td id='stl'>" + "</td>" + "<td id='blk'>" + "</td>" + "<td id='to'>" + "</td>" + "<td id='pf'>" + "</td>" + "<td id='fgm'>" + "</td>" + "<td id='fga'>" + "</td>" + "<td id='fgp'>" + "</td>" + "<td id='ptm'>" + "</td>" + "<td id='pta'>" + "</td>" + "<td id='ptp'>" + "</td>" + "<td id='ftm'>" + "</td>" + "</tr>";
 
@@ -503,6 +524,7 @@ $('#runItBack').on('click', function () {
   });
   playerText = '';
   $('.playerCard').remove();
+  $('.playerCardContainer').hide();
 })
 
 $('#newsButton').on('click', function () {
@@ -524,7 +546,7 @@ $('#newsButton').on('click', function () {
     $.each(response.articles, function (index, element) {
       var date = new Date(element.publishedAt).toISOString().slice(0, 10);
       var author = element.author ? element.author : ' ';
-      var li = '<li><h3><a href="' + element.url + '" target="_blank">' + element.title + '</a></h3><span class="date">' + date + '</span><span class="author">' + author + '</span><p>' + element.description + '</p><img src="' + element.urlToImage + '" /></li>'
+      var li = '<li><h3><a href="' + element.url + '" target="_blank">' + element.title + '</a></h3><span class="date">' + date + '</span><span class="author">' + author + '</span><p>' + element.description + '</p><img class="newsPic" src="' + element.urlToImage + '" /></li>'
       newsBox.append(li);
       $('#news-section').append(newsBox);
     });
@@ -661,20 +683,5 @@ $('#graphButton').on('click', function () {
 
 
 
-function splitName() {
-  var playerName = playerText;
 
-  var splitPlayerName = playerName.split(' ');
-  firstName = splitPlayerName[0];
-  lastName = splitPlayerName[1];
-  var firstNamea = '/' + firstName;
-  var lastNamea = '/' + lastName;
-  console.log(firstNamea);
-  console.log(lastNamea);
 
-  completeName = lastNamea + firstNamea;
-  console.log(completeName);
-
-}
-
- 
