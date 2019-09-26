@@ -5,7 +5,7 @@
     <a href='javascript:void(0)' class='closeBar' onclick="openBar()">&times;</a>
     <a href="#">Player</a>
     <a href="#">Teams</a>
-    <a href="#">Figure it out?</a>
+    <a href="../public/nba_game_visualizer/index.html">Evan's Cool page</a>
     <a href="#">Fun Stuff</a>
   </div>
   {{!-- end SideBar that exist outside of Boot strap Container --}}
@@ -21,14 +21,18 @@
       <div class="row" id="headerRow">
         <div class="col-8 offset-2">
           {{!-- <h1>{{msg}}</h1> --}}
-          <h2 id='headerText'>The GOAT</h2>
+          <h2 id='headerText'> <span id='h1'> The GOAT </span><i class="fas fa-basketball-ball fa-2x"
+              id='searchButton'></i></h2>
           ​
           {{!-- Search Bar --}}
           <form id='submitBar'>
             <div class="form-group">
               <input type="search" class="form-control" id="playerSelected" placeholder="Pick A Player">
             </div>
-            <button type="button" class="btn btn-primary" id='searchButton'>Submit</button>
+            {{!-- <button type="button" class="btn btn-primary" id='searchButton'>Submit</button> --}}
+
+
+
           </form>
           {{!-- Search Bar --}}
         </div>
@@ -43,21 +47,19 @@
 
     <div class="row" id='afterSearch'>
 
-      <div class="col-8 offset-2">
+      <div class="col-8 offset-2" id='header2'>
         {{!-- <h1>{{msg}}</h1> --}}
-        <h2 id='headerText'>The GOAT</h2>
+        <h2 id='headerText2'>The GOAT <form id='submitBar'>
 
-        {{!-- end header --}}
-        ​
-        {{!-- Search Bar --}}
-        <form id='submitBar'>
-          <div class="form-group">
-            <input type="search" class="form-control" id="playerSelected2" placeholder="Pick A Player">
-          </div>
-          <button type="button" class="btn btn-primary" id='searchButton2'>Submit</button>
+            <div class="form-group">
+              <input type="search" class="form-control" id="playerSelected2" placeholder="Pick A Player">
+            </div>
+
+            <button type="button" class="btn btn-primary" id='searchButton2'>Submit</button>
+            <button class='sideButtonD'>Menu</button>
+        </h2>
         </form>
-        {{!-- Search Bar --}}
-        <button class='sideButtonD'>open</button>
+
       </div>
     </div>
 
@@ -66,14 +68,14 @@
 
     <div class='playerDataD'>
       <div class='dataPage' id='currentPlayer'></div>
-      
+
       <button class='dataPage' id='table'>Player</button>
       <button class='dataPage' id='graphButton'>Graph</button>
       <button class='dataPage' id='newsButton'>News</button>
       <button class='dataPage'>Team</button>
       <button class='dataPage' id='addPlayerB'>Team B</button>
       <button class='dataPage' id='addPlayerA'>Team A</button>
-      
+
     </div>
     {{!-- end tab table to help players make informed descisions --}}
 
@@ -82,19 +84,19 @@
     <div id='Player' class='dataPageContent'>
 
       {{!-- Start Player Data Table in tab Player --}}
-      <div class="col-sm-12 col-lg-12 col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
+      <div class="col-sm-12 col-lg-12 col-md-12" id='tab'>
+        <div class="panel panel-default" id='tab'>
+          <div class="panel-heading" id='tab'>
 
-            <div class="panel-actions">
+            <div class="panel-actions" id='tab'>
               <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
               <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
               <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
             </div>
           </div>
 
-          <div class="panel-body table-responsive">
-            <table class="tablecountries">
+          <div class="panel-body table-responsive" id='tab'>
+            <table class="tablePlayer">
               <thead>
                 <tr>
                   <th>Player</th>
@@ -243,12 +245,12 @@
                   <td id='pf'>PF</th>
                   <td id='fgm'>FGM</th>
                   <td id='fga'>FGA</th>
-                  {{!-- <td id='fgp'>FG%</th>
+                    {{!-- <td id='fgp'>FG%</th>
                   <td id='3ptm'>3PTM</th>
                   <td id='3pta'>3PTA</th>
                   <td id='3ptp'>3PT%</th> --}}
                   <td id='ftm'>FTM</th>
-                  {{!-- <td id='fta'>FTA</th>
+                    {{!-- <td id='fta'>FTA</th>
                   <td id='ftp'>FT%</th> --}}
                   <td></td>
                 </tr>
@@ -269,17 +271,24 @@
 
     <div class='playerCardContainer'>
       <div class='teamSide' id='playerSideA'>
-        Team A
+        <span class='sideTitle'>Team A</span>
         <div class='playerInfoA'></div>
       </div>
       <div class='teamSide' id='playerSideB'>
-        Team B
+        <span class='sideTitle'>Team B</span>
         <div class='playerInfoB'></div>
       </div>
     </div>
     <br>
+
+    <div>
     <button class='functionButton' id='ballDontLie'>Ball Don't Lie</button>
     <button class='functionButton' id='runItBack'>Run It Back</button>
+    </div>
+
+
+
+
   </div>
 
 
@@ -293,5 +302,5 @@
 
 
 
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="/js/indexPublic.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

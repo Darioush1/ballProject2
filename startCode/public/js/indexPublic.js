@@ -16,7 +16,7 @@ var teamBArray = [];
 var tabTextClass = '';
 
 $(document).ready(function () {
-  $('#sideButtonD, .dataPageContent, .playerDataD, #afterSearch, .functionButton, .playerCardContainer').hide();
+  $('#sideButtonD, .dataPageContent, .playerDataD, #afterSearch, .functionButton, .playerCardContainer, #header2').hide();
 
 });
 
@@ -155,7 +155,7 @@ $('#searchButton').on('click', function () {
   var chosenPlayer = '';
 
   $('#currentPlayer').text(playerText)
-  $('.sideButtonD, .playerDataD, .dButton, #afterSearch').show();
+  $('.sideButtonD, .playerDataD, .dButton, #afterSearch, #header2').show();
   $('.header1').hide();
   getPlayers();
   $('#Player').slideDown('slow')
@@ -214,11 +214,9 @@ $('#searchButton').on('click', function () {
 var playerStats = {};
 
 $('#addPlayerA').on('click', function () {
-  var playerText = '';
-  var completeNameA= '';
-  playerText = $('#playersSelected').text();
+
   function splitName() {
-    var playerName = $('#playersSelected').text();
+    var playerName = $('#currentPlayer').text();
     // console.log(playerName);
     var splitPlayerName = playerName.split(' ');
     console.log(splitPlayerName);
@@ -273,7 +271,6 @@ $('#addPlayerA').on('click', function () {
 
 
 
-  $('.playerCardContainer, .functionButton').show();
 
   var playerText = '';
   playerText = $('#players').text();
@@ -297,6 +294,7 @@ $('#addPlayerA').on('click', function () {
     + '</div>' +
     '</div>'
     ;
+  splitName();
   function getImageA() {
     $('.playerPicA').attr('src', 'https://nba-players.herokuapp.com/players' + completeNameA);
 
@@ -305,20 +303,19 @@ $('#addPlayerA').on('click', function () {
   $('.playerInfoA').append(newPlayerCardA)
   $('#cardNameA').html(playerText);
   getImageA();
-
+  $('.playerCardContainer, .functionButton').show();
 
 });
 
 
 var playerStatsb = {};
 $('#addPlayerB').on('click', function () {
-  var playerText = '';
-  var completeNameB = '';
-  playerText = $('#playerSelected').text();
+  
+  
   function splitName() {
-    // var playerName = playerText;
+    playerName = $('#currentPlayer').text();
     // console.log(playerName);
-    var splitPlayerName = playerText.split('');
+    var splitPlayerName = playerName.split(' ');
     console.log(splitPlayerName);
     firstName = splitPlayerName[0];
     lastName = splitPlayerName[1];
@@ -371,7 +368,7 @@ $('#addPlayerB').on('click', function () {
 
 
   
-  $('.playerCardContainer, .functionButton').show();
+ 
 
   var playerText = '';
   playerText = $('#players').text();
@@ -392,15 +389,18 @@ $('#addPlayerB').on('click', function () {
     + '</div>' +
     '</div>'
     ;
+    splitName();
   function getImageB() {
     $('.playerPicB').attr('src', 'https://nba-players.herokuapp.com/players' + completeNameB);
-
+    console.log(
+      'https://nba-players.herokuapp.com/players' + completeNameB
+      )
   };
   addPlayerB(playerText);
   $('.playerInfoB').append(newPlayerCardB)
   $('#cardNameB').html(playerText);
   getImageB();
-
+  $('.playerCardContainer, .functionButton').show();
 });
 
 
@@ -593,31 +593,31 @@ $('#newsButton').on('click', function () {
 });
 
 $('#graphButton').on('click', function () {
-  var name = '';
-  var team = '';
-  var gp = 0;
-  var min = 0;
-  var ppg = 0;
-  var oreb = 0;
-  var dreb = 0;
-  var reb = 0;
-  var ast = 0;
-  var stl = 0;
-  var blk = 0;
-  var to = 0;
-  var pf = 0;
-  var fgm = 0;
-  var fga = 0;
-  var fgp = 0;
-  var ptm = 0;
-  var pta = 0;
-  var ptp = 0;
-  var ftm = 0;
+  
 
 
     function getPlayers() {
-
-      var playerName = $('#playerSelected').val();
+      var name = '';
+      var team = '';
+      var gp = 0;
+      var min = 0;
+      var ppg = 0;
+      var oreb = 0;
+      var dreb = 0;
+      var reb = 0;
+      var ast = 0;
+      var stl = 0;
+      var blk = 0;
+      var to = 0;
+      var pf = 0;
+      var fgm = 0;
+      var fga = 0;
+      var fgp = 0;
+      var ptm = 0;
+      var pta = 0;
+      var ptp = 0;
+      var ftm = 0;
+      var playerName = $('#currentPlayer').text();
       console.log(playerName);
       $.get("/api/search/" + playerName, function (data) {
         console.log(data);
@@ -641,6 +641,25 @@ $('#graphButton').on('click', function () {
         pta = data.pta;
         ptp = data.ptp;
         ftm = data.ftm;
+        $('#players').text(name);
+        $('#team').text(team);
+        $('#min').text(min);
+        $('#ppg').text(ppg);
+        $('#oreb').text(oreb);
+        $('#dreb').text(dreb);
+        $('#reb').text(reb);
+        $('#ast').text(ast);
+        $('#stl').text(stl);
+        $('#blk').text(blk);
+        $('#to').text(to);
+        $('#pf').text(pf);
+        $('#fgm').text(fgm);
+        $('#fga').text(fga);
+        $('#ptm').text(ptm);
+        $('#pta').text(pta);
+        $('#ptp').text(ptp);
+        $('#ftm').text(ftm);
+  
       });
     }
   
@@ -649,17 +668,16 @@ $('#graphButton').on('click', function () {
 
 
       var chart = new CanvasJS.Chart("chartContainer", {
-        theme: "light2",
+        theme: "dark1",
         animationEnabled: true,
         exportEnabled: true,
-        labelWrap: true,
-
         title: {
           text: ""
         },
         axisY: {
           includeZero: false,
-          title: 'stats'
+          title: 'stats',
+          yValueFormatString: '####.###',
         },
         toolTip: {
           shared: "true"
@@ -675,11 +693,11 @@ $('#graphButton').on('click', function () {
           yValueFormatString: "###.####",
           name: name,
           dataPoints: [
-            { label: "PPG", y: 5 },
-            { label: "OREB", y: 4 },
-            { label: "DREB", y: 5 },
-            { label: "REB", y: 6 },
-            { label: "AST", y: 3 },
+            { label: "PPG", y: 0 },
+            { label: "OREB", y: 0 },
+            { label: "DREB", y: 0 },
+            { label: "REB", y: 0 },
+            { label: "AST", y: 0 },
             { label: "STL", y: 0 },
             { label: "BLK", y: 0 },
             { label: "TO", y: 0 },
@@ -697,9 +715,12 @@ $('#graphButton').on('click', function () {
           ]
         }]
       });
+      var length = chart.options.data[0].dataPoints.length;
+      chart.options.title.text = "Last DataPoint Updated";
 
-
+      chart.options.data[0].dataPoints[length-1].y = 5 ;
       chart.render();
+
 
       function toggleDataSeries(e) {
         if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -707,15 +728,12 @@ $('#graphButton').on('click', function () {
         } else {
           e.dataSeries.visible = true;
         }
-        chart.render();
+     
       };
 
-
+      chart.render();
     
-    // var length = chart.options.data[0].dataPoints.length;
-    // chart.options.title.text = "Last DataPoint Updated";
-    // console.log(ppg)
-
+     
   });
 
 function clearTable() {

@@ -1,5 +1,5 @@
 * {
-  /* background-color: #111111;   */
+  background-color: #3b3b3b;  
   font: #cfc2c2;
 }
 
@@ -27,6 +27,8 @@ img.newsPic{
 }
 
 
+
+
 #addPlayerA {
   float: right;
   margin-left: 10px;
@@ -46,10 +48,28 @@ img.newsPic{
   margin-right: auto;
   font-size: 86px;
 }
+#headerText2 {
+  font-family: 'Saira Stencil One', cursive;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 30px;
+}
+/* #header2 {
+  position: Fixed;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:100%;
+  padding:20px;
+  
+} */
 
 #headerTextAfterSearch {
   font-family: 'Saira Stencil One', cursive;
 }
+
+
 
 
 
@@ -102,10 +122,25 @@ img.newsPic{
 
 
 
-#sideButtonD{
+.sideButtonD{
   background-color: aqua;
   border: 0px;
-  padding: 10px;
+  border-radius: 5px;
+  padding: 6px 12px;
+  float: right;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #f1f1f1
+}
+
+.functionButton{
+  background-color: aqua;
+  border: 0px;
+  border-radius: 5px;
+  padding: 6px 12px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #f1f1f1
 }
 
 .playerDataD{
@@ -134,17 +169,53 @@ margin-right: auto;
   background-color: #ccc;
 }
 
+tr {
+  background-color: #f1f1f1
+}
+td{
+  background-color: #f1f1f1
+}
+
 .dataPageContent {
   display: none;
   padding:6px 12px;
   border: 1px solid #ccc;
   border-top:none;
+  background-color: #f1f1f1
+}
+
+#currentPlayer{
+  background-color: #f1f1f1
+}
+
+#tab{
+  background-color: #f1f1f1
+}
+
+th {
+  background-color: #f1f1f1
 }
 
 .playerCard {
   position: relative;
   width: 50%;
-  max-width: 300px
+  max-width: 300px;
+  border: #818181;
+  border-width: 5px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.sideTitle {
+  border-width: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 50%;
+  max-width: 300px;
+  text-align: center
+
 }
 
 .playerPicA{
@@ -179,8 +250,18 @@ margin-right: auto;
   
 }
 
-#afterSearch{
-  background-color: #818181;
-  
+#afterSearch{  
 }
 
+#searchButton{
+  float: right;
+}
+
+#searchButton:hover{
+  color: red;
+  transition: 0.2s ease;
+}
+
+#h1{
+  font-size: 100px
+}
